@@ -1,0 +1,79 @@
+<template>
+    <breeze-validation-errors class="mb-4" />
+
+    <form @submit.prevent="submit">
+        <div>
+            <breeze-label for="name" value="الاسم" />
+            <breeze-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+        </div>
+
+        <div class="mt-4">
+            <breeze-label for="email" value="البريد الالكتروني" />
+            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
+        </div>
+
+        <div class="mt-4">
+            <breeze-label for="password" value="كلمة المرور" />
+            <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
+        </div>
+
+        <div class="mt-4">
+            <breeze-label for="password_confirmation" value="اعد كلمة المرور" />
+            <breeze-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
+        </div>
+
+        <div class="mt-3 text-center flex justify-around">
+            <breeze-button class="py-2 bg-green-700" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                تسجيل
+            </breeze-button>
+            <inertia-link :href="route('admin.index')" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
+                المشرفين
+            </inertia-link>
+        </div>
+
+    </form>
+</template>
+
+<script>
+    import BreezeButton from '@/Components/Auth/Button'
+    import BreezeGuestLayout from '@/Layouts/Auth/Guest'
+    import BreezeInput from '@/Components/Auth/Input'
+    import BreezeLabel from '@/Components/Auth/Label'
+    import BreezeValidationErrors from '@/Components/Auth/ValidationErrors'
+
+    export default {
+        layout: BreezeGuestLayout,
+
+        components: {
+            BreezeButton,
+            BreezeInput,
+            BreezeLabel,
+            BreezeValidationErrors,
+        },
+
+        props: {
+            auth: Object,
+            errors: Object,
+        },
+
+        data() {
+            return {
+                form: this.$inertia.form({
+                    name: '',
+                    email: '',
+                    password: '',
+                    password_confirmation: '',
+                    terms: false,
+                })
+            }
+        },
+
+        methods: {
+            submit() {
+                this.form.post(this.route('register'), {
+                    onFinish: () => this.form.reset('password', 'password_confirmation'),
+                })
+            }
+        }
+    }
+</script>
