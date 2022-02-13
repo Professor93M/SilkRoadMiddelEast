@@ -1,19 +1,19 @@
 <template>
     <pageTitle v-if="!fromDash" :title="subcat" />
-    <pageTitle v-else title="السلع المميزة" />
+    <pageTitle v-else title="Special" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
                     <Title v-if="!fromDash" :text="subcat" />
-                    <Title v-else text="السلع المميزة" />
+                    <Title v-else text="Special" />
 
                     <div class="mx-3">
                         <inertia-link href="/products/create" type="submit" class="btn btn-outline-primary text-white float-left px-3 my-2 flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
                             </svg>
-                            <span class="mx-2 text-xs">اضافة سلع</span>
+                            <span class="mx-2 text-xs">Create</span>
                         </inertia-link>
                     </div>
 
@@ -21,13 +21,13 @@
                         <table class="table table-hover table-striped text-center text-white table-fixed align-middle">
                             <thead>
                                 <tr class="text-gray-200 bg-gray-500">
-                                    <th class="select-none">اسم السلعة</th>
-                                    <th class="select-none">القسم الرئيسي</th>
-                                    <th class="select-none">القسم الفرعي</th>
-                                    <th class="select-none">السعر</th>
-                                    <th class="select-none">المخزون</th>
-                                    <th class="select-none">مميز</th>
-                                    <th class="select-none">تاريخ الاضافة</th>
+                                    <th class="select-none">Name</th>
+                                    <th class="select-none">Category</th>
+                                    <th class="select-none">SubCategory</th>
+                                    <th class="select-none">Price</th>
+                                    <th class="select-none">Qty</th>
+                                    <th class="select-none">Special</th>
+                                    <th class="select-none">Created at</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,16 +38,15 @@
                                     <th v-else class="font-light">{{ subcat[index].cat_name }}</th>
                                     <th class="font-light">{{ Number(product.pd_price).toLocaleString('en') }} $</th>
                                     <th class="font-light">{{ product.pd_stack }}</th>
-                                    <th class="text-green-400 font-light" v-if="product.pd_state === 1 ">مميز</th>
-                                    <th class="text-red-400 font-light" v-else>غير مميز</th>
+                                    <th class="text-green-400 font-light" v-if="product.pd_state === 1 ">Special</th>
+                                    <th class="text-red-400 font-light" v-else>Not Special</th>
                                     <th class="font-light">{{ moment(product.created_at).format('YYYY-MM-DD') }}</th>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div v-else class="text-center mt-5">
-                        <h1 class="text-white text-4xl my-4">لاتوجد سلع تطابق المحدد</h1>
-                        <!-- <inertia-link class="lead text-decoration-none text-blue-300 hover:text-yellow-400 transition duration-500" href="/products/create">اضغط هنا لاضافة سلع جديده</inertia-link> -->
+                        <h1 class="text-white text-4xl my-4">No Products</h1>
                     </div>
                     <!--  Pagination  -->
                     <div v-if="products" class="flex justify-center my-3">

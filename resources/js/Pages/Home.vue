@@ -1,19 +1,19 @@
 <template>
   <div class="container-fluid px-0 bg-gray-700">
-    <pageTitle description="شركة مايكرو للتقسيط - الصفحة الرئيسية" title="الصفحة الرئيسية" />
+    <pageTitle description="Silk Road MiddleEast" title="Home" />
     <nav-bar :logged="auth.user" />
     <vueper-slides v-if="carousel.length > 0" autoplay lazy lazy-load-on-drag :touchable="false" rtl :dragging-distance="50" arrows-outside progress fixed-height="600px" :bullets="false" class="mt-2 mx-5 px-2 border-2 border-gray-400 border-opacity-40 rounded-lg">
       <vueper-slide v-for="(car, i) in carousel" :key="i" :image="'images/' + car.image.img_url" :title="car.title" :link="car.url" :content="car.description">
         <template #loader>
             <i class="spinner-border text-warning"></i>
-            <span class="text-gray-300 mt-3">جاري تحميل الصورة</span>
+            <span class="text-gray-300 mt-3">Loading Image</span>
         </template>
       </vueper-slide>
     </vueper-slides>
 
-    <!-- الاقسام       -->
+    <!-- Categories       -->
     <inertia-link as="h1" href="/category" class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 font-weight-bolder mt-12 mb-3 hover:text-gray-300 transition duration-500">
-      الاقســـام
+      Categories
     </inertia-link>
     <div v-if="Category.length > 0" class="flex justify-center items-center">
       <span @click="catRight" class="carousel-control-next-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
@@ -24,11 +24,11 @@
       </div>
       <span @click="catLeft" class="carousel-control-prev-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
     </div>
-    <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">لا توجد اقسام</h1>
+    <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">No Categories</h1>
 
-     <!-- جديدنا -->
+     <!-- Newiest -->
     <inertia-link as="h1" href="/product" class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 font-weight-bolder mt-16 mb-3 hover:text-gray-300 transition duration-500">
-      جـديدنـــا
+      Newiest
     </inertia-link>
     <div v-if="ProdLastest.length > 0" class="flex justify-center items-center">
       <span @click="newRight" class="carousel-control-next-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
@@ -39,11 +39,11 @@
       </div>
       <span @click="newLeft" class="carousel-control-prev-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
     </div>
-    <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">لا توجد سلع جديدة</h1>
+    <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">No Products</h1>
  <!-- lg:min-w-20 md:min-w-40 min-w-60 md:max-w-20 -->
-    <!-- السلع المميزة       -->
+    <!-- Special       -->
     <inertia-link as="h1" href="/special" class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 font-weight-bolder mt-16 mb-3 hover:text-gray-300 transition duration-500">
-      السلـــع المميــزة
+      Special
     </inertia-link>
     <div v-if="Special.length > 0" class="flex justify-center items-center">
       <span @click="cardRight" class="carousel-control-next-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
@@ -54,7 +54,7 @@
       </div>
       <span @click="cardLeft" class="carousel-control-prev-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
     </div>
-    <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">لا توجد سلع مميزة مضافة</h1>
+    <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">No Products</h1>
 
     <whatsapp />
     <Footer />
@@ -114,7 +114,7 @@ export default {
         this.$swal({
             text: this.success,
             icon: 'currect',
-            confirmButtonText: 'موافق',
+            confirmButtonText: 'Submit',
         })
     }
   },

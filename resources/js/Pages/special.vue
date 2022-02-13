@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid px-0 bg-gray-700">
-    <pageTitle title="السلع المميزة" />
+    <pageTitle title="Special" />
     <nav-bar :logged="auth.user" />
     <h1 class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 hover:text-gray-300 select-none transition duration-500 font-weight-bolder my-5">
-        السلع المميزة
+        Special
     </h1>
     <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 m-3">
       <div dir="ltr" v-for="(prod, index) in special.data" :key="index" class="hvr-bob card bg-gray-700 border-2 border-gray-400 rounded-lg mx-2 mb-3">

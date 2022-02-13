@@ -1,7 +1,7 @@
 <template>
     <div class="size size2">
         <inertia-link :href="`/product/${products_id}`">
-            <div v-if="state ? 'ribbon' : ''" class="ribbon"><span><fa icon="star" class="mx-1 text-xs" />مميز<fa icon="star" class="mx-1 text-xs" /></span></div>
+            <div v-if="state ? 'ribbon' : ''" class="ribbon"><span><fa icon="star" class="mx-1 text-xs" />Special<fa icon="star" class="mx-1 text-xs" /></span></div>
             <span v-if="pd_stack < 1" class="empty bg-gradient-to-b from-gray-600 to-gray-700 rounded-lg text-yellow-500 opacity-80 text-2xl font-extrabold absolute h-44 w-full flex justify-center items-center z-10">نفذت الكمية</span>
             <img loading="lazy" :src="'images/' + image" class="imgEffect card-img-top rounded-lg h-screen max-h-44 image" alt="...">
         </inertia-link>

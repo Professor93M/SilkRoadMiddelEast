@@ -9,11 +9,6 @@
 <script>
 export default {
     props:['max', 'min'],
-    // props:{
-    //     max: Number,
-    //     min: Number,
-    //     value: Number,
-    // },
     data(){
         return{
             value: this.min

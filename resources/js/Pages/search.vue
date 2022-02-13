@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid px-0 bg-gray-700">
 
-    <pageTitle :title="'بحث عن:' + $store.state.search" />
+    <pageTitle :title="'Search: ' + $store.state.search" />
     <nav-bar :logged="auth.user" />
     <p v-if="success" class="text-xl text-gray-400 bg-gray-800 rounded-lg text-center p-3 w-8/12 mx-auto my-3">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 animate-bounce inline md:float-right text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -11,7 +11,7 @@
     </p>
     <div v-if="searched.total > 0">
       <div class="w-40">
-        <p class="text-lg text-gray-400 mr-5 my-7 bg-gray-800 p-2 rounded-lg">عدد السلع: &nbsp;<span class="text-yellow-400">{{ searched.total }}</span></p>
+        <p class="text-lg text-gray-400 mr-5 my-7 bg-gray-800 p-2 rounded-lg">Count: &nbsp;<span class="text-yellow-400">{{ searched.total }}</span></p>
     </div>
     <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 m-3">
       <div dir="ltr" v-for="(prod, index) in searched.data" :key="index" class="hvr-bob card bg-gray-700 border-2 border-gray-400 rounded-lg mx-2 mb-3">

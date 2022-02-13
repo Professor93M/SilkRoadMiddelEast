@@ -13,7 +13,7 @@
                                 </inertia-link>
                                 <div class="">
                                     <breeze-responsive-nav-link :href="route('dashboard')" :active="route().current('home')" class="text-gray-50 text-2xl">
-                                        Micro Store
+                                        Silk Road MiddleEast
                                     </breeze-responsive-nav-link>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative flex">
                                 <breeze-button @click.prevent="goHome" class="py-2 mx-2 text-xs border-2 border-white">
-                                    الصفحة الرئيسية
+                                    Home
                                 </breeze-button>
                                 <breeze-dropdown align="right" width="48">
                                     <template #trigger>
@@ -45,7 +45,7 @@
 
                                     <template #content>
                                         <breeze-dropdown-link class="text-right" :href="route('logout')" method="post" as="button">
-                                            تسجيل الخروج
+                                            Logout
                                         </breeze-dropdown-link>
                                     </template>
                                 </breeze-dropdown>
@@ -71,15 +71,15 @@
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 d-block">
                         <div class="px-4 w-100 text-center">
-                            <div class="font-medium text-white">مرحبا بك <span class="text-warning">{{ $page.props.auth.user.name }}</span></div>
+                            <div class="font-medium text-white">Welcome <span class="text-warning">{{ $page.props.auth.user.name }}</span></div>
                         </div>
                         <navBar :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder" />
                         <div class="mt-3 space-y-1 text-center bg-danger">
                             <breeze-responsive-nav-link :href="route('home')" as="button" class="text-white bg-green-500">
-                                الصفحة الرئيسية
+                                Home
                             </breeze-responsive-nav-link>
                             <breeze-responsive-nav-link :href="route('logout')" method="post" as="button" class="text-white">
-                                تسجيل الخروج
+                                Logout
                             </breeze-responsive-nav-link>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid px-0 bg-gray-700">
-    <pageTitle title="المفضلات" />
+    <pageTitle title="Favorite" />
     <nav-bar :logged="auth.user" />
     <h1 class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 hover:text-gray-300 select-none transition duration-500 font-weight-bolder my-5">
-        المفضلات
+        Favorite
     </h1>
     <div v-if="$store.state.like.length >= 1">
       <div class="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 m-3">
@@ -14,7 +14,7 @@
     </div>
     <div v-else class="flex justify-center">
         <h1 class="text-white text-center text-2xl bg-gray-800 w-90 p-4 rounded-lg">
-            قائمة المفضلات فارغة !
+            No Products
         </h1>
     </div>
     <whatsapp />

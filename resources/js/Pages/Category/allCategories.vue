@@ -1,9 +1,9 @@
 <template>
-  <pageTitle title="جميع الاقسام" />
+  <pageTitle title="All Categories" />
   <div class="container-fluid px-0 bg-gray-700">
     <nav-bar :logged="auth.user" />
     <h1 class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 hover:text-gray-300 select-none transition duration-500 font-weight-bolder my-5">
-        جميع الاقسام
+        All Categories
     </h1>
     <div class="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 m-4">
       <div dir="ltr" v-for="(cat, index) in allCategories.data" :key="index" class="bg-gray-700 mx-auto px-3 mb-3 shadow-lg pt-3 rounded-lg">

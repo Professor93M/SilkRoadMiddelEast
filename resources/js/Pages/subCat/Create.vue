@@ -1,29 +1,29 @@
 <template>
-    <pageTitle title="اضافة قسم فرعي جديد" />
+    <pageTitle title="Create" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
 
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 text-center mt-4">
-                    <Title text="اضافة قسم فرعي جديد" />
+                    <Title text="Create" />
 
                     <form class="mt-5 space-y-3 w-75 mx-auto" @submit.prevent="createCat" enctype="multipart/form-data" method="POST">
 
-                        <label for="cat_name" class="block text-right text-white mr-2 mb-2">اسم القسم:</label>
+                        <label for="cat_name" class="block text-right text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="cat_name" type="text" v-model="subCat.cat_name" :class="{ 'is-invalid': errors.cat_name }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.cat_name }}</small>
 
                         <div class="form-group">
-                            <label for="categories" class="block text-right text-white mr-2 mb-2">القسم الرئيسي</label>
+                            <label for="categories" class="block text-right text-white mr-2 mb-2">Category</label>
                             <select class="form-select bg-gray-600 text-gray-300" name="categories" id="categories" @change="onChange($event)">
-                                <option disabled selected value="">رجاء اختر القسم</option>
+                                <option disabled selected value="">Select Category</option>
                                 <option v-for="category in categories" :key="category.id" :value="category.id">{{category.cat_name}}</option>
                             </select>
                         </div>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صورة القسم الفرعي</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">SubCategory Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -37,7 +37,7 @@
                         <small class="text-red-300 mr-auto mb-3">{{ errors.img_url }}</small>
 
                         <div class="flex justify-around my-4">
-                            <button :disabled="subCat.processing || !subCat.cat_name" type="submit" class="btn btn-outline-primary px-5 text-white">اضافة</button>
+                            <button :disabled="subCat.processing || !subCat.cat_name" type="submit" class="btn btn-outline-primary px-5 text-white">Create</button>
                         </div>
 
                     </form>
@@ -102,12 +102,12 @@
                 if (this.imgExt.includes(e.target.files[0].name.split('.').pop())){
                     flag +=1
                 }else{
-                    alert('رجاء قم بأختيار صورة مناسبة')
+                    alert('Please select Image format')
                 }
                 if ( (e.target.files[0].size) <= 2097152){
                     flag +=1
                 }else{
-                    alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                    alert('Image selected more than 2MB')
                 }
                 if(flag >=2){
                     this.subCat.img_url = e.target.files[0]

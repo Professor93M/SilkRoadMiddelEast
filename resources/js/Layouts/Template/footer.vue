@@ -5,8 +5,8 @@
             <div class="sm:flex sm:mt-8">
                 <div class="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between">
                     <div class="flex flex-col text-center">
-                        <inertia-link href="/" class="font-extrabold text-gray-400 text-2xl font-mono uppercase filter drop-shadow-lg hover:text-gray-100 transition duration-500">Micro Store</inertia-link>
-                        <span class="my-2 text-gray-400 font-light">شركة متخصصة في تجارة الاجهزة المنزلية والالكترونية</span>
+                        <inertia-link href="/" class="font-extrabold text-gray-400 text-2xl font-mono uppercase filter drop-shadow-lg hover:text-gray-100 transition duration-500">Silk Road MiddleEast</inertia-link>
+                        <span class="my-2 text-gray-400 font-light">Here you will found everything</span>
                         <div class="flex justify-center mt-4">
                             <!-- facebook -->
                             <a class="mx-3 text-gray-400 transition duration-500 hvr-bounce-in" href="https://www.facebook.com/C.Micro.Electroincs" target="_blank">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <span id="divide" class="font-extrabold text-gray-400 uppercase mt-4 md:mt-0 mb-2 select-none">روابط الموقع</span>
+                        <span id="divide" class="font-extrabold text-gray-400 uppercase mt-4 md:mt-0 mb-2 select-none">Links</span>
                         <span class="my-1"><inertia-link href="/" class="text-gray-500 text-md hover:text-yellow-500 transition duration-500">الرئيسية</inertia-link></span>
                         <span class="my-1"><inertia-link href="/category" class="text-gray-500 text-md hover:text-yellow-500 transition duration-500">الاقسام</inertia-link></span>
                         <span class="my-1"><inertia-link href="/product" class="text-gray-500 text-md hover:text-yellow-500 transition duration-500">السلع</inertia-link></span>
@@ -45,11 +45,6 @@
                         <span class="my-1"><inertia-link href="likes" class="text-gray-500 text-md hover:text-yellow-500 transition duration-500">المفضلات</inertia-link></span>
                         <span class="my-1"><inertia-link href="special" class="text-gray-500 text-md hover:text-yellow-500 transition duration-500">السلع المميزة</inertia-link></span>
                     </div>
-                    <div class="flex flex-col">
-                        <span id="divide" class="font-extrabold text-gray-400 uppercase mt-4 md:mt-0 mb-2 select-none">تواصل معنا</span>
-                        <!-- <span class="my-1"><inertia-link href="contactus" class="text-gray-400  text-md hover:text-blue-500">اتصل بنا</inertia-link></span> -->
-                        <span class="my-1"><inertia-link href="contact" class="text-gray-500  text-md hover:text-yellow-500 transition duration-500">اتصل بنا</inertia-link></span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -57,10 +52,7 @@
             <div class="mt-4 border-t-2 border-gray-500 border-opacity-40 flex flex-col items-center">
                 <div class="sm:w-2/3 text-center py-3">
                     <p class="text-sm text-gray-400 font-bold mb-1">
-                        {{ moment().format('YYYY') }} - جميع الحقوق محفوظة لشركة Micro Store
-                    </p>
-                    <p dir="ltr" class="text-sm text-gray-400 font-bold tracking-widest font-mono">
-                        Programmed By <a class="text-yellow-400 hover:text-purple-500 transition duration-500" target="_blank" href="https://www.facebook.com/Horizon.Dev.IQ">HorizonDev©</a>
+                        {{ moment().format('YYYY') }} - All Right Received for Silk Road MiddleEast
                     </p>
                 </div>
             </div>

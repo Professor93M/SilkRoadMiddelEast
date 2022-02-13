@@ -1,41 +1,41 @@
 <template>
-    <pageTitle title="اضافة سلعة جديدة" />
+    <pageTitle title="Create" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
 
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 text-center mt-4">
-                    <Title text="اضافة سلعة جديدة" />
+                    <Title text="Create" />
 
                     <form  @submit.prevent="createProd" class="mt-5 space-y-3 w-75 mx-auto">
 
-                        <Switch name="pd_state" text="مميز" @change="products.pd_state = !products.pd_state" :checked="products.pd_state" />
+                        <Switch name="pd_state" text="Special" @change="products.pd_state = !products.pd_state" :checked="products.pd_state" />
 
-                        <label for="pd_name" class="block text-right text-white mr-2 mb-2">اسم السلعة</label>
+                        <label for="pd_name" class="block text-right text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="text" v-model="products.pd_name" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_name }}</small>
 
                         <div class="form-group">
-                            <label for="categories_id" class="block text-right text-white mr-2 mb-2">القسم الرئيسي</label>
+                            <label for="categories_id" class="block text-right text-white mr-2 mb-2">Category</label>
                             <select class="form-select bg-gray-600 text-gray-300" name="categories_id" id="categories_id" @change="onChange($event)">
-                                <option disabled selected value="">رجاء اختر القسم الرئيسي</option>
+                                <option disabled selected value="">Select Category</option>
                                 <option v-for="category in categories" :key="category.id" :value="category.id">{{category.cat_name}}</option>
                             </select>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.categories_id }}</small>
 
                         <div v-if="sub" class="form-group">
-                            <label for="sub_cats_id" class="block text-right text-white mr-2 mb-2">القسم الفرعي</label>
+                            <label for="sub_cats_id" class="block text-right text-white mr-2 mb-2">SubCategoy</label>
                             <select class="form-select bg-gray-600 text-gray-300" name="sub_cats_id" id="sub_cats_id" @change="onChangeSub($event)">
-                                <option disabled selected value="">رجاء اختر القسم الفرعي</option>
+                                <option disabled selected value="">Select SubCategoy</option>
                                 <option v-for="category in sub" :key="category.id" :value="category.id">{{category.cat_name}}</option>
                             </select>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.sub_cats_id }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صورة الغلاف</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">Cover Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectCover">
                                 <fa icon="images" class="text-4xl" />
@@ -48,7 +48,7 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.cover }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صور السلعة</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">Product Images</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -59,47 +59,41 @@
                                 <img loading="lazy" id="img" @click="showImage(img_preview[i])" :src="img_preview[i]" width="100" height ="100" class="img-thumbnail cursor-zoom-in">
                             </div>
                         </div>
-                        <small v-show="imgEmpty" class="text-red-300 mr-auto mb-3">يجب ادخال صورة</small>
+                        <small v-show="imgEmpty" class="text-red-300 mr-auto mb-3">Must select image</small>
 
-                        <label for="price" class="block text-right text-white mr-2 mb-2">السعر</label>
+                        <label for="price" class="block text-right text-white mr-2 mb-2">Price</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="number" @keypress='onlyNumbers' v-model.number="products.pd_price" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                             <p class='text-center text-white lead pt-1'>{{Number(products.pd_price).toLocaleString('en')}} $</p>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_price }}</small>
 
-                        <label for="stack" class="block text-right text-white mr-2 mb-2">المخزون</label>
+                        <label for="stack" class="block text-right text-white mr-2 mb-2">Qty</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="number" v-model="products.pd_stack" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_stack }}</small>
 
-                        <label for="description" class="block text-right text-white mr-2 mb-2">الوصف</label>
+                        <label for="description" class="block text-right text-white mr-2 mb-2">Description</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <textarea type="text" rows="5" v-model="products.pd_description" class="max-height px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_description }}</small>
 
-                        <label for="phone" class="block text-right text-white mr-2 mb-2">رقم الهاتف</label>
+                        <label for="Company" class="block text-right text-white mr-2 mb-2">Company Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
-                            <input type="text" v-model="products.phone" placeholder="07X0 000 0000" class="placeholder-gray-400 placeholder-opacity-70 px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
+                            <input type="text" v-model="products.company" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
-                        <small class="text-red-300 mr-auto mb-3">{{ errors.phone }}</small>
+                        <small class="text-red-300 mr-auto mb-3">{{ errors.company }}</small>
 
-                        <label for="message" class="block text-right text-white mr-2 mb-2">رسالة بدء المحادثة</label>
-                        <div class="mt-1 relative rounded-md shadow-sm">
-                            <textarea type="text" rows="2" v-model="products.message" class="max-height px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
-                        </div>
-                        <small class="text-red-300 mr-auto mb-3">{{ errors.message }}</small>
-
-                        <label for="review" class="block text-right text-white mr-2 mb-2">رابط المراجعة</label>
+                        <label for="review" class="block text-right text-white mr-2 mb-2">Review</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="url" v-model="products.review" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.review }}</small>
 
                         <div class="flex justify-around my-4">
-                            <button type="submit" class="btn btn-outline-primary px-5 text-white" :disabled="products.processing || !products.pd_name || !products.img_url || !products.pd_price || !products.pd_stack || !products.pd_description || !products.phone || !products.categories_id || !products.sub_cats_id || !products.message">اضافة</button>
+                            <button type="submit" class="btn btn-outline-primary px-5 text-white" :disabled="products.processing || !products.pd_name || !products.img_url || !products.pd_price || !products.pd_stack || !products.pd_description || !products.phone || !products.categories_id || !products.sub_cats_id || !products.message">Create</button>
                         </div>
                     </form>
                 </div>
@@ -145,8 +139,7 @@
                     pd_stack: '',
                     pd_state: false,
                     pd_description: '',
-                    phone: '07733111109',
-                    message: 'اريد الاستفسار عن هذه السلعة',
+                    company: '',
                     review: '',
                     cover: '',
                 },
@@ -197,12 +190,12 @@
                     if (this.imgExt.includes(e.target.files[i].name.split('.').pop())){
                         flag +=1
                     }else{
-                        alert('رجاء قم بأختيار صورة مناسبة')
+                        alert('Please select Image format')
                     }
                     if ( (e.target.files[i].size) <= 2097152){
                         flag +=1
                     }else{
-                        alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                        alert('Image selected more than 2MB')
                     }
                     if(flag >=2){
                         this.img_changed = true
@@ -217,12 +210,12 @@
                 if (this.imgExt.includes(e.target.files[0].name.split('.').pop())){
                     flag +=1
                 }else{
-                    alert('رجاء قم بأختيار صورة مناسبة')
+                    alert('Please select Image format')
                 }
                 if ( (e.target.files[0].size) <= 2097152){
                     flag +=1
                 }else{
-                    alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                    alert('Image selected more than 2MB')
                 }
                 if(flag >=2){
                     this.products.cover = e.target.files[0]

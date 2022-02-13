@@ -1,5 +1,4 @@
 // require('./bootstrap');
-import { quillEditor, Quill } from 'vue3-quill'
 // import customQuillModule from 'customQuillModule'
 // Quill.register('modules/customQuillModule', customQuillModule)
 import VueSweetalert2 from 'vue-sweetalert2'
@@ -15,7 +14,7 @@ import { Link } from '@inertiajs/inertia-vue3'
 library.add(fas) // FontAwesome
 // Import modules...
 import { createApp, h } from 'vue';
-import { App as InertiaApp, plugin as InertiaPlugin, Link as InertiaLink} from '@inertiajs/inertia-vue3';
+import { App as InertiaApp, plugin as InertiaPlugin, Link as InertiaLink } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 // import { Link as InertiaLink } from '@inertiajs/inertia-vue3'
 
@@ -33,7 +32,6 @@ createApp({
     .component('fa', FontAwesomeIcon)
     .mixin({ methods: { route } })
     .use(store)
-    .use(quillEditor)
     .use(VueSweetalert2)
     .use(InertiaPlugin)
     .use(Link)

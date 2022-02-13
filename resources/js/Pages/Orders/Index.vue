@@ -1,28 +1,28 @@
 <template>
-    <pageTitle title="طلبات الشراء الجديدة" />
+    <pageTitle title="New Orders" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
-                    <Title text="طلبات الشراء الجديدة" />
+                    <Title text="New Orders" />
                     <div v-if="orders" class="border border-white">
                         <table class="table table-dark table-hover table-striped text-center text-white table-fixed align-middle">
                             <thead>
                                 <tr class="text-muted">
                                     <th>
-                                        <td class="flex justify-center">رمز الطلب</td>
+                                        <td class="flex justify-center">ID</td>
                                     </th>
                                     <th>
-                                        <td class="flex justify-center">الاسم</td>
+                                        <td class="flex justify-center">Name</td>
                                     </th>
                                     <th>
-                                        <td class="flex justify-center">رقم الهاتف</td>
+                                        <td class="flex justify-center">Mobile</td>
                                     </th>
                                     <th>
-                                        <td class="flex justify-center">المحافظة</td>
+                                        <td class="flex justify-center">Country</td>
                                     </th>
                                     <th>
-                                        <td class="flex justify-center">تاريخ الطلب</td>
+                                        <td class="flex justify-center">Order Date</td>
                                     </th>
                                 </tr>
                             </thead>
@@ -39,7 +39,7 @@
                     </div>
                     <div v-else class="flex justify-center mt-4">
                         <h1 class="text-white text-center text-2xl bg-gray-800 w-90 p-3 rounded-lg">
-                            لاتوجد طلبات شراء جديدة
+                            No Orders
                         </h1>
                     </div>
                 </div>

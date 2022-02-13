@@ -1,46 +1,46 @@
 <template>
-    <pageTitle :title="'تعديل ' + product.pd_name" />
+    <pageTitle :title="'Edit ' + product.pd_name" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
 
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 text-center mt-4">
-                    <Title text="تعديل بيانات السلعة" />
+                    <Title text="Edit" />
 
                     <form class="mt-5 space-y-3 w-75 mx-auto" @submit.prevent="editProd">
 
-                        <Switch name="pd_state" text="مميز" @change="product.pd_state = !product.pd_state" :checked="product.pd_state" />
+                        <Switch name="pd_state" text="Special" @change="product.pd_state = !product.pd_state" :checked="product.pd_state" />
 
-                        <label for="pd_name" class="block text-right text-white mr-2 mb-2">اسم السلعة</label>
+                        <label for="pd_name" class="block text-right text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="text" v-model="product.pd_name" class="px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-600 text-gray-300" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_name }}</small>
 
                         <div class="form-group">
-                            <label for="Mcategories" class="block text-right text-white mr-2 mb-2">القسم الرئيسي</label>
+                            <label for="Mcategories" class="block text-right text-white mr-2 mb-2">Category</label>
                             <select class="form-select bg-gray-600 text-gray-300" name="Mcategories" id="Mcategories" @load.once="run" @change="onChange($event)">
-                                <option disabled value="">رجاء اختر القسم الرئيسي</option>
+                                <option disabled value="">Select Category</option>
                                 <option v-for="category in categories" :key="category.id" :selected="category.id == product.categories_id" :value="category.id">{{category.cat_name}}</option>
                             </select>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.categories_id }}</small>
 
                         <div class="form-group">
-                            <label for="categories" class="block text-right text-white mr-2 mb-2">القسم الفرعي</label>
+                            <label for="categories" class="block text-right text-white mr-2 mb-2">SubCategory</label>
                             <select v-if="sub.length > 0 || emptySub" class="form-select bg-gray-600 text-gray-300" name="categories" id="Scategories" @change="onChangeSub($event)">
-                                <option disabled value="">رجاء اختر القسم الفرعي</option>
+                                <option disabled value="">Select SubCategory</option>
                                 <option id='selectCat' v-for="cat in sub" :key="cat.id" :selected="cat.id == product.sub_cats_id" :value="cat.id">{{cat.cat_name}}</option>
                             </select>
                             <select v-else class="form-select bg-gray-600 text-gray-300" name="categories" id="categories" @change="onChangeSub($event)">
-                                <option disabled value="">رجاء اختر القسم الفرعي</option>
+                                <option disabled value="">Select SubCategory</option>
                                 <option v-for="cat in subcat" :key="cat.id" :selected="cat.id == product.sub_cats_id" :value="cat.id">{{cat.cat_name}}</option>
                             </select>
                         </div>
-                        <small v-show="!Equal" class="text-red-300 mr-auto mb-3">قم بتحديد القسم الفرعي</small>
+                        <small v-show="!Equal" class="text-red-300 mr-auto mb-3">Select SubCategory</small>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.sub_cats_id }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صورة الغلاف</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">Cover Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectCover">
                                 <fa icon="images" class="text-4xl" />
@@ -53,7 +53,7 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.cover }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صور السلعة</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">Product Images</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -68,58 +68,52 @@
                                 <img loading="lazy" id="img2" @click="showImage(img)" :src="img" width="100" height ="100" class="img-thumbnail cursor-zoom-in">
                             </div>
                         </div>
-                        <small v-show="imgEmpty" class="text-red-300 mr-auto mb-3">يجب ادخال صورة</small>
+                        <small v-show="imgEmpty" class="text-red-300 mr-auto mb-3">Must select image</small>
 
-                        <label for="pd_price" class="block text-right text-white mr-2 mb-2">السعر</label>
+                        <label for="pd_price" class="block text-right text-white mr-2 mb-2">Price</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="number" v-model="product.pd_price" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                             <p class='text-center text-white lead pt-1'>{{Number(product.pd_price).toLocaleString('en')}} $</p>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_price }}</small>
 
-                        <label for="pd_stack" class="block text-right text-white mr-2 mb-2">المخزون</label>
+                        <label for="pd_stack" class="block text-right text-white mr-2 mb-2">Qty</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="number" v-model="product.pd_stack" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_stack }}</small>
 
-                        <label for="pd_description" class="block text-right text-white mr-2 mb-2">الوصف</label>
+                        <label for="pd_description" class="block text-right text-white mr-2 mb-2">Description</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <textarea type="text" rows="5" v-model="product.pd_description" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_description }}</small>
 
-                        <label for="phone" class="block text-right text-white mr-2 mb-2">رقم الهاتف</label>
+                        <label for="company" class="block text-right text-white mr-2 mb-2">Company</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                            <input type="text" v-model="product.phone" placeholder="07X0 000 0000" class="placeholder-gray-400 placeholder-opacity-70 px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-600 text-gray-300" />
+                            <input type="text" v-model="product.company" class="px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-600 text-gray-300" />
                         </div>
-                        <small class="text-red-300 mr-auto mb-3">{{ errors.phone }}</small>
+                        <small class="text-red-300 mr-auto mb-3">{{ errors.company }}</small>
 
-                        <label for="message" class="block text-right text-white mr-2 mb-2">رسالة بدء المحادثة</label>
-                        <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                            <textarea type="text" rows="5" v-model="product.message" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
-                        </div>
-                        <small class="text-red-300 mr-auto mb-3">{{ errors.message }}</small>
-
-                        <label for="review" class="block text-right text-white mr-2 mb-2">رابط المراجعة</label>
+                        <label for="review" class="block text-right text-white mr-2 mb-2">Review</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="url" v-model="product.review" class="px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-600 text-gray-300" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.review }}</small>
 
-                        <label for="created_at" class="block text-right text-white mr-2 mb-2">تاريخ الاضافة</label>
+                        <label for="created_at" class="block text-right text-white mr-2 mb-2">Created at</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <label class="text-white">{{ moment(products.data.created_at).locale('ar').fromNow() }}</label>
                         </div>
 
                         <div v-if="products.data.created_at !== products.data.updated_at">
-                            <label for="updated_at" class="block text-right text-white mr-2 mb-2">اخر تعديل</label>
+                            <label for="updated_at" class="block text-right text-white mr-2 mb-2">Last Update</label>
                             <div class="mt-1 relative rounded-md shadow-sm mb-3">
                                 <label class="text-white">{{ moment(products.data.updated_at).locale('ar').fromNow() }}</label>
                             </div>
                         </div>
                         <div class="flex justify-around my-4">
-                            <button type="submit" class="btn btn-outline-primary px-5 text-white" :disabled="product.processing || !product.pd_name || !product.img_url || !product.pd_price || !product.pd_description || !product.phone || !product.message">تعديل</button>
+                            <button type="submit" class="btn btn-outline-primary px-5 text-white" :disabled="product.processing || !product.pd_name || !product.img_url || !product.pd_price || !product.pd_description || !product.phone || !product.message">Update</button>
                             <button @click.prevent="deleteProd" class="btn btn-outline-danger px-5 text-white">حذف</button>
                         </div>
                     </form>
@@ -224,10 +218,10 @@
             deleteProd(){
                 this.$swal({
                     icon: 'error',
-                    title: "هل تريد حذف "+ this.product.pd_name +" فعلاً",
+                    title: "Do you want to delete "+ this.product.pd_name +" ?",
                     showDenyButton: true,
-                    confirmButtonText: `نعم`,
-                    denyButtonText: `كلا`,
+                    confirmButtonText: `Yes`,
+                    denyButtonText: `No`,
                     reverseButtons: true,
                     }).then((result) => {
                     if (result.isConfirmed) {
@@ -273,12 +267,12 @@
                     if (this.imgExt.includes(e.target.files[i].name.split('.').pop())){
                         flag +=1
                     }else{
-                        alert('رجاء قم بأختيار صورة مناسبة')
+                        alert('Please select Image format')
                     }
                     if ( (e.target.files[i].size) <= 2097152){
                         flag +=1
                     }else{
-                        alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                        alert('Image selected more than 2MB')
                     }
                     if(flag >=2){
                         this.img_changed = true
@@ -299,12 +293,12 @@
                 if (this.imgExt.includes(e.target.files[0].name.split('.').pop())){
                     flag +=1
                 }else{
-                    alert('رجاء قم بأختيار صورة مناسبة')
+                    alert('Please select Image format')
                 }
                 if ( (e.target.files[0].size) <= 2097152){
                     flag +=1
                 }else{
-                    alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                    alert('Image selected more than 2MB')
                 }
                 if(flag >=2){
                     this.product.cover = e.target.files[0]

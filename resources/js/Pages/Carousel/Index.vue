@@ -2,17 +2,17 @@
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
-                <pageTitle title="الاعلانات" />
+                <pageTitle title="Carousals" />
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
-                    <Title text="الاعلانات" />
+                    <Title text="Carousals" />
 
                     <div class="mb-3 mx-3">
-                        <input dir="rtl" placeholder="البحث ..." v-model="params.search" type="search" name="search" class="w-1/2 placeholder-opacity-50 rounded-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
+                        <input dir="rtl" placeholder="Search ..." v-model="params.search" type="search" name="search" class="w-1/2 placeholder-opacity-50 rounded-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
                         <inertia-link href="/carousel/create" type="submit" class="btn btn-outline-primary text-white float-left px-3 flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                                 <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
                             </svg>
-                            <span class="mx-2">اضافة اعلان</span>
+                            <span class="mx-2">Add</span>
                         </inertia-link>
                     </div>
 
@@ -23,7 +23,7 @@
                                 <thead>
                                     <tr class="text-muted">
                                         <th>
-                                            <inertia-link class="flex justify-center" href="#" @click="sort('title')">العنوان
+                                            <inertia-link class="flex justify-center" href="#" @click="sort('title')">Title
                                                 <svg v-if="params.field === 'title' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                     <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                                 </svg>
@@ -34,7 +34,7 @@
                                             </inertia-link>
                                         </th>
                                         <th>
-                                            <inertia-link class="flex justify-center" href="#" @click="sort('state')">حالة الاعلان
+                                            <inertia-link class="flex justify-center" href="#" @click="sort('state')">State
                                                 <svg v-if="params.field === 'state' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                     <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                                 </svg>
@@ -46,7 +46,7 @@
                                         </th>
                                         <th>الصورة</th>
                                         <th>
-                                            <inertia-link class="flex justify-center" href="#" @click="sort('created_at')">تاريخ الاضافة
+                                            <inertia-link class="flex justify-center" href="#" @click="sort('created_at')">Created at
                                                 <svg v-if="params.field === 'created_at' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                     <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                                 </svg>
@@ -61,9 +61,9 @@
                                 <tbody>
                                     <tr v-for="car in carousel.data" :key="car.id" @click="selectCar(car.id)" class="cursor-pointer">
                                         <th>{{ car.title }}</th>
-                                        <th :class="car.state == true ? 'text-green-500' : 'text-red-500'">{{ car.state == true ? "معلن" : "غير معلن" }}</th>
-                                        <th v-if="car.image"><img loading="lazy" :src="'images/' + car.image.img_url" alt="صورة" class="mx-auto" width="60" height="60"></th>
-                                        <th v-else><img loading="lazy" src="storage/carousel/time.png" alt="الصورة غير متوفرة" class="mx-auto" width="60" height="60"></th>
+                                        <th :class="car.state == true ? 'text-green-500' : 'text-red-500'">{{ car.state == true ? "Show" : "Hidden" }}</th>
+                                        <th v-if="car.image"><img loading="lazy" :src="'images/' + car.image.img_url" alt="Image" class="mx-auto" width="60" height="60"></th>
+                                        <th v-else><img loading="lazy" src="storage/carousel/time.png" alt="Image Unavailable" class="mx-auto" width="60" height="60"></th>
                                         <th>{{ moment(car.created_at).format('YYYY-MM-DD') }}</th>
                                     </tr>
                                 </tbody>
@@ -87,8 +87,8 @@
                         </div>
                     </div>
                     <div v-else class="text-center mt-5">
-                        <h1 class="text-white text-4xl my-4">لم يتم انشاء اي اعلان لحد الان</h1>
-                        <inertia-link class="lead text-decoration-none text-blue-300 hover:text-yellow-400 transition duration-500" href="/carousel/create">اضغط هنا لانشاء قسم جديد</inertia-link>
+                        <h1 class="text-white text-4xl my-4">No Carousels added</h1>
+                        <inertia-link class="lead text-decoration-none text-blue-300 hover:text-yellow-400 transition duration-500" href="/carousel/create">Create</inertia-link>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
             <inertia-link href="/dashboard" class="text-gray-400 text-4xl block hover:text-yellow-500 transition duration-500">
                 <fa icon="tachometer-alt" />
             </inertia-link>
-            <inertia-link href="/dashboard" class="text-2xl text-white hover:text-yellow-500 transition duration-500">لـوحـة الـتحكم</inertia-link>
+            <inertia-link href="/dashboard" class="text-2xl text-white hover:text-yellow-500 transition duration-500">Dashboard</inertia-link>
         </div>
         <!-- + + + + + Admins List + + + + + -->
         <div v-if="isAdmin == 1" class="bg-gray-600 mt-4">
@@ -13,7 +13,7 @@
                     <fa v-if="!showAdmin" icon="user-cog" />
                     <fa v-else icon="users" />
                 </div>
-                المشرفين
+                Admins
                 <span class="float-left">
                     <fa icon="chevron-right" :class="showAdmin ? 'opened':'closed'" />
                 </span>
@@ -21,21 +21,15 @@
 
             <transition name="navItems">
                 <div v-if="showAdmin" class="bg-gray-600 text-white text-center py-2">
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/admins">عرض المشرفين
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/admins">Show Admins
                         <div class="float-left px-3">
                             <fa icon="user-friends" class="text-xl" />
                         </div>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/register">اضافة مشرف
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/register">Add Admin
                         <div class="float-left px-3">
                             <fa icon="user-plus" class="text-xl" />
-                        </div>
-                    </inertia-link>
-                    <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/logs">سجل المشرفين
-                        <div class="float-left px-3">
-                            <fa icon="clipboard-list" class="text-xl" />
                         </div>
                     </inertia-link>
                 </div>
@@ -51,7 +45,7 @@
                     </svg>
                     <fa v-else icon="box-open" />
                 </div>
-                السلع
+                Products
                 <span class="float-left">
                     <fa icon="chevron-right" :class="showProd ? 'opened':'closed'" />
                 </span>
@@ -59,7 +53,7 @@
 
             <transition name="navItems">
                 <div v-if="showProd" class="bg-gray-600 text-white text-center py-2">
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/products">عرض السلع
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/products">Show Products
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
@@ -67,7 +61,7 @@
                         </div>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/products/create">اضافة سلعة
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/products/create">Add Product
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
@@ -87,7 +81,7 @@
                     </svg>
                     <fa v-else icon="tags" />
                 </div>
-                الاقسام الرئيسية
+                Categories
                 <span class="float-left">
                     <fa icon="chevron-right" :class="showCat ? 'opened':'closed'" />
                 </span>
@@ -95,7 +89,7 @@
 
             <transition name="navItems">
                 <div v-if="showCat" class="bg-gray-600 text-white text-center py-2">
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/categories">عرض الاقسام الرئيسية
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/categories">Show Categories
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
@@ -103,7 +97,7 @@
                         </div>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/categories/create">اضافة قسم رئيسي
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/categories/create">Add Category
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
@@ -124,7 +118,7 @@
                     </svg>
                     <fa v-else icon="tags" />
                 </div>
-                الاقسام الفرعية
+                SubCategories
                 <span class="float-left">
                     <fa icon="chevron-right" :class="showSCat ? 'opened':'closed'" />
                 </span>
@@ -132,7 +126,7 @@
 
             <transition name="navItems">
                 <div v-if="showSCat" class="bg-gray-600 text-white text-center py-2">
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/subcat">عرض الاقسام الفرعية
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/subcat">Show SubCategories
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
@@ -140,7 +134,7 @@
                         </div>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/subcat/create">اضافة قسم فرعي
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/subcat/create">Add SubCategory
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
@@ -162,7 +156,7 @@
                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                     </svg>
                 </div>
-                الاعلانات
+                Carousels
                 <span class="float-left">
                     <fa icon="chevron-right" :class="showCar ? 'opened':'closed'" />
                 </span>
@@ -170,7 +164,7 @@
 
             <transition name="navItems">
                 <div v-if="showCar" class="bg-gray-600 text-white text-center py-2">
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/carousel">عرض الاعلانات
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/carousel">Show Carousels
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-signpost-2-fill" viewBox="0 0 16 16">
                                 <path d="M7.293.707A1 1 0 0 0 7 1.414V2H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h5v1H2.5a1 1 0 0 0-.8.4L.725 8.7a.5.5 0 0 0 0 .6l.975 1.3a1 1 0 0 0 .8.4H7v5h2v-5h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H9V6h4.5a1 1 0 0 0 .8-.4l.975-1.3a.5.5 0 0 0 0-.6L14.3 2.4a1 1 0 0 0-.8-.4H9v-.586A1 1 0 0 0 7.293.707z"/>
@@ -178,7 +172,7 @@
                         </div>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/carousel/create">اضافة اعلان
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/carousel/create">Add Carousel
                         <div class="float-left px-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                                 <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
@@ -195,7 +189,7 @@
                     <fa v-if="showOrder" icon="dolly" />
                     <fa v-else icon="dolly-flatbed" />
                 </div>
-                الطلبات
+                Orders
                 <span class="float-left">
                     <fa icon="chevron-right" :class="showOrder ? 'opened':'closed'" />
                 </span>
@@ -207,7 +201,7 @@
 
             <transition name="navItems">
                 <div v-if="showOrder" class="bg-gray-600 text-white text-center py-2">
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders">الطلبات الجديدة
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders">New Orders
                         <div class="float-left px-3 text-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
                                 <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
@@ -219,7 +213,7 @@
                         </span>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/checked">الطلبات الجاهزة
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/checked">Prepard Orders
                         <div class="float-left px-3">
                             <fa icon="truck" />
                         </div>
@@ -229,13 +223,13 @@
                         </span>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/history">سجل الطلبات
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/history">Orders Logs
                         <div class="float-left px-3 text-xl">
                             <fa icon="clipboard-check" />
                         </div>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/usersLogs">سجل التحقق
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/usersLogs">Check Logs
                         <div class="float-left px-3 text-xl">
                             <fa icon="clipboard-list" />
                         </div>

@@ -1,15 +1,15 @@
 <template>
-    <pageTitle :title="'تعديل ' + category.cat_name" />
+    <pageTitle :title="'Edit ' + category.cat_name" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0">
             <div class="grid lg:grid-cols-12 w-full bg-gray-700">
 
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 text-center mt-4">
-                    <Title text="تعديل القسم" />
+                    <Title text="Edit" />
 
                     <div class="text-left ml-4">
-                        <inertia-link :href="`/categories/${category.id}`" type="submit" class="btn btn-outline-danger text-white px-3 text-xs " title="عرض الاقسام الفرعية التابعة لهذا القسم">
-                            عرض الاقسام الفرعية
+                        <inertia-link :href="`/categories/${category.id}`" type="submit" class="btn btn-outline-danger text-white px-3 text-xs " title="Show SubCategories">
+                            Show SubCategories
                             <div class="float-right pl-2">
                                 <fa class="text-lg" icon="tags" />
                             </div>
@@ -18,13 +18,13 @@
 
                     <form class="mt-2 space-y-3 w-75 mx-auto" @submit.prevent="editCat">
 
-                        <label for="cat_name" class="block text-right text-white mr-2 mb-2">اسم القسم:</label>
+                        <label for="cat_name" class="block text-right text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="cat_name" type="text" v-model="category.cat_name" :class="{ 'is-invalid': errors.cat_name }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.cat_name">{{ errors.cat_name }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صورة القسم</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -37,21 +37,21 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.img_url }}</small>
 
-                        <label class="block text-right text-white mr-2 mb-2">تاريخ الاضافة:</label>
+                        <label class="block text-right text-white mr-2 mb-2">Created at</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <label class="text-white">{{ moment(categories.data.created_at).locale("ar").fromNow() }}</label>
                         </div>
 
                         <div v-if="categories.data.created_at !== categories.data.updated_at">
-                            <label class="block text-right text-white mr-2 mb-2">اخر تعديل:</label>
+                            <label class="block text-right text-white mr-2 mb-2">Last Update</label>
                             <div class="mt-1 relative rounded-md shadow-sm mb-3">
                                 <label class="text-white">{{ moment(categories.data.updated_at).locale("ar").fromNow() }}</label>
                             </div>
                         </div>
 
                         <div class="flex justify-around my-4">
-                            <button type="submit" class="btn btn-outline-primary px-5 text-white">تعديل</button>
-                            <button @click.prevent="deleteCat" class="btn btn-outline-danger px-5 text-white">حذف</button>
+                            <button type="submit" class="btn btn-outline-primary px-5 text-white">Update</button>
+                            <button @click.prevent="deleteCat" class="btn btn-outline-danger px-5 text-white">Delete</button>
                         </div>
 
                     </form>
@@ -106,16 +106,16 @@
                         'img_url' : this.category.img_url,
                     })
                 }else{
-                    alert('قم بأختيار صورة')
+                    alert('Select an Image')
                 }
             },
             deleteCat(){
                 this.$swal({
                     icon: 'error',
-                    title: 'هل تريد حذف '+ this.category.cat_name +' فعلاً',
+                    title: 'Do you want to delete '+ this.category.cat_name +' ?',
                     showDenyButton: true,
-                    confirmButtonText: `نعم`,
-                    denyButtonText: `كلا`,
+                    confirmButtonText: `Yes`,
+                    denyButtonText: `No`,
                     reverseButtons: true,
                     }).then((result) => {
                     if (result.isConfirmed) {
@@ -131,12 +131,12 @@
                 if (this.imgExt.includes(e.target.files[0].name.split('.').pop())){
                     flag +=1
                 }else{
-                    alert('رجاء قم بأختيار صورة مناسبة')
+                    alert('Please select Image format')
                 }
                 if ( (e.target.files[0].size) <= 2097152){
                     flag +=1
                 }else{
-                    alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                    alert('Image selected more than 2MB')
                 }
                 if(flag >=2){
                     this.category.img_url = e.target.files[0]

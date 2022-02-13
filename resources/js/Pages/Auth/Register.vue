@@ -3,31 +3,31 @@
 
     <form @submit.prevent="submit">
         <div>
-            <breeze-label for="name" value="الاسم" />
+            <breeze-label for="name" value="Name" />
             <breeze-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
         </div>
 
         <div class="mt-4">
-            <breeze-label for="email" value="البريد الالكتروني" />
+            <breeze-label for="email" value="Email" />
             <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
         </div>
 
         <div class="mt-4">
-            <breeze-label for="password" value="كلمة المرور" />
+            <breeze-label for="password" value="Password" />
             <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
         </div>
 
         <div class="mt-4">
-            <breeze-label for="password_confirmation" value="اعد كلمة المرور" />
+            <breeze-label for="password_confirmation" value="Confirm Password" />
             <breeze-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
         </div>
 
         <div class="mt-3 text-center flex justify-around">
             <breeze-button class="py-2 bg-green-700" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                تسجيل
+                Register
             </breeze-button>
             <inertia-link :href="route('admin.index')" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
-                المشرفين
+                Admins
             </inertia-link>
         </div>
 

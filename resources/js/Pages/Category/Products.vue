@@ -6,7 +6,7 @@
         {{subcat.cat_name}}
     </h1>
 
-    <bread title1='الرئيسية' url1="/" :title2="categories_name.cat_name" :url2="`/category/${subcat.categories_id}`" :title3="subcat.cat_name" active3="active" />
+    <bread title1='Home' url1="/" :title2="categories_name.cat_name" :url2="`/category/${subcat.categories_id}`" :title3="subcat.cat_name" active3="active" />
 
     <div v-if="products.data.length > 0">
         <div class="grid md:grid-cols-6 grid-cols-2 m-3">
@@ -17,7 +17,7 @@
     </div>
     <div v-else class="flex justify-center">
         <h1 class="text-white text-center text-2xl bg-gray-800 w-90 p-4 rounded-lg">
-            لا توجد سلع في هذا القسم
+            No Products
         </h1>
     </div>
     <!--  Pagination  -->

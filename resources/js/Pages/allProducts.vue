@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid px-0 bg-gray-700">
-    <pageTitle title="جميع السلع" />
+    <pageTitle title="All Products" />
     <nav-bar :logged="auth.user" />
     <h1 class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 hover:text-gray-300 select-none transition duration-500 font-weight-bolder my-5">
-        جميع السلع
+        All Products
     </h1>
     <div v-if="allProducts.data.length > 0">
         <div class="grid md:grid-cols-6 grid-cols-2 m-3">
@@ -14,7 +14,7 @@
     </div>
     <div v-else class="flex justify-center">
         <h1 class="text-white text-center text-2xl bg-gray-800 w-90 p-4 rounded-lg">
-            لا توجد سلع
+            No Products
         </h1>
     </div>
     <!--  Pagination  -->

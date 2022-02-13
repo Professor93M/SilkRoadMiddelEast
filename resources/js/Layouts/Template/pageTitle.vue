@@ -1,7 +1,7 @@
 <template>
     <Head>
-        <title>{{ title }} - مايكرو للتقسيط</title>
-        <meta head-key="description" name="description" :content="description ? description : 'شركة مايكرو للتقسيط للبيع المباشر وبالتقسيط المريح حيث كل ماهو جديد ومميز'">
+        <title>{{ title }}</title>
+        <meta head-key="description" name="description" :content="description ? description : 'Here all what you want'">
      </Head>
 </template>
 

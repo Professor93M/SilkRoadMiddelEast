@@ -6,27 +6,27 @@
     </div>
 
     <form @submit.prevent="submit">
-        <p class="text-center text-bold text-2xl text-gray-400 mb-3">تسجيل الدخول</p>
+        <p class="text-center text-bold text-2xl text-gray-400 mb-3">Login</p>
         <div>
-            <breeze-label for="email" value="البريد الالكتروني" />
+            <breeze-label for="email" value="Email" />
             <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
         </div>
 
         <div class="mt-4">
-            <breeze-label for="password" value="كلمة المرور" />
+            <breeze-label for="password" value="Password" />
             <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
         </div>
 
         <div class="block mt-4">
             <label class="flex items-center">
                 <breeze-checkbox name="remember" v-model:checked="form.remember" />
-                <span class="mr-2 text-sm text-gray-400">تذكرني</span>
+                <span class="mr-2 text-sm text-gray-400">Remember Me</span>
             </label>
         </div>
 
         <div class="mt-4 text-center">
             <breeze-button class="py-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                تسجيل الدخول
+                Login
             </breeze-button>
         </div>
     </form>

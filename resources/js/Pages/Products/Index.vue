@@ -1,43 +1,43 @@
 <template>
-    <pageTitle title="جميع السلع" />
+    <pageTitle title="All Products" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
-                    <Title text="جميع السلع" />
+                    <Title text="All Products" />
 
                     <div class="mb-3 mx-3">
-                        <input dir="rtl" placeholder="البحث ..." v-model="params.search" type="search" name="search" class="w-1/2 placeholder-opacity-50 rounded-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
+                        <input dir="rtl" placeholder="Search ..." v-model="params.search" type="search" name="search" class="w-1/2 placeholder-opacity-50 rounded-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
                         <inertia-link href="/products/create" type="submit" class="btn btn-outline-primary text-white float-left px-3 flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
                             </svg>
-                            <span class="mx-2 text-xs">اضافة سلع</span>
+                            <span class="mx-2 text-xs">Create</span>
                         </inertia-link>
                     </div>
 
                     <!-- +++++++++ Filter +++++++++ -->
 
                     <form class="bg-gray-900 rounded my-2">
-                        <legend @click="showFilter=!showFilter" title="اضغط هنا لعرض التصفية" class="text-yellow-400 p-1 text-center select-none cursor-pointer bg-gray-800">تصفية</legend>
+                        <legend @click="showFilter=!showFilter" title="Filter" class="text-yellow-400 p-1 text-center select-none cursor-pointer bg-gray-800">Filter</legend>
                         <transition name="filter">
                             <fieldset v-if="showFilter" class="flex flex-wrap justify-center">
                                 <div class="form-group m-2">
-                                    <label for="categories_id" class="block text-right text-white mr-2 mb-2">القسم الرئيسي</label>
+                                    <label for="categories_id" class="block text-right text-white mr-2 mb-2">Category</label>
                                     <select class="form-select bg-gray-600 text-gray-300" name="categories_id" id="categories_id" v-model="filter.category" @change="onChange($event)">
-                                        <option disabled selected value="">رجاء اختر القسم الرئيسي</option>
+                                        <option disabled selected value="">Select Category</option>
                                         <option v-for="category in categories" :key="category.id" :value="category.id">{{category.cat_name}}</option>
                                     </select>
                                 </div>
 
                                 <div v-if="categorySelected" class="form-group m-2">
-                                    <label for="categories" class="block text-right text-white mr-2 mb-2">القسم الفرعي</label>
+                                    <label for="categories" class="block text-right text-white mr-2 mb-2">SubCategory</label>
                                     <select v-if="sub.length > 0 || emptySub" class="form-select bg-gray-600 text-gray-300" v-model="filter.subcat" name="categories" id="Scategories" @change="onChangeSub($event)">
-                                        <option disabled value="">رجاء اختر القسم الفرعي</option>
+                                        <option disabled value="">Select SubCategory</option>
                                         <option id='selectCat' v-for="cat in sub" :key="cat.id" :selected="cat.id == products.sub_cats_id" :value="cat.id">{{cat.cat_name}}</option>
                                     </select>
                                     <select v-else class="form-select bg-gray-600 text-gray-300" v-model="filter.subcat" name="categories" id="categories" @change="onChangeSub($event)">
-                                        <option disabled value="">رجاء اختر القسم الفرعي</option>
+                                        <option disabled value="">Select SubCategory</option>
                                         <option v-for="cat in subcat" :key="cat.id" :selected="cat.id == products.sub_cats_id" :value="cat.id">{{cat.cat_name}}</option>
                                     </select>
                                 </div>
@@ -56,7 +56,7 @@
                             <thead>
                                 <tr class="text-gray-300 bg-gray-500">
                                     <th>
-                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('pd_name')">اسم السلعة
+                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('pd_name')">Name
                                             <svg v-if="params.field === 'pd_name' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                             </svg>
@@ -67,7 +67,7 @@
                                         </inertia-link>
                                     </th>
                                     <th>
-                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('categories_id')">القسم الرئيسي
+                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('categories_id')">Category
                                             <svg v-if="params.field === 'categories_id' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                             </svg>
@@ -78,7 +78,7 @@
                                         </inertia-link>
                                     </th>
                                     <th>
-                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('sub_cats_id')">القسم الفرعي
+                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('sub_cats_id')">SubCategory
                                             <svg v-if="params.field === 'sub_cats_id' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                             </svg>
@@ -90,7 +90,7 @@
                                     </th>
                                     <th class="select-none">السعر</th>
                                     <th>
-                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('pd_stack')">المخزون
+                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('pd_stack')">Qty
                                             <svg v-if="params.field === 'pd_stack' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                             </svg>
@@ -101,7 +101,7 @@
                                         </inertia-link>
                                     </th>
                                     <th>
-                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('pd_state')">مميز
+                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('pd_state')">Special
                                             <svg v-if="params.field === 'pd_state' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                             </svg>
@@ -112,7 +112,7 @@
                                         </inertia-link>
                                     </th>
                                     <th>
-                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('created_at')">تاريخ الاضافة
+                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('created_at')">Created at
                                             <svg v-if="params.field === 'created_at' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
                                             </svg>
@@ -131,16 +131,15 @@
                                     <th class="font-light">{{ getSCat(product.sub_cats_id) }}</th>
                                     <th class="font-light">{{ Number(product.pd_price).toLocaleString('en') }} $</th>
                                     <th class="font-light">{{ product.pd_stack }}</th>
-                                    <th class="text-green-400 font-light" v-if="product.pd_state === 1 ">مميز</th>
-                                    <th class="text-red-400 font-light" v-else>غير مميز</th>
+                                    <th class="text-green-400 font-light" v-if="product.pd_state === 1 ">Special</th>
+                                    <th class="text-red-400 font-light" v-else>Not Special</th>
                                     <th class="font-light">{{ moment(product.created_at).format('YYYY-MM-DD') }}</th>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div v-else class="text-center mt-5">
-                        <h1 class="text-white text-4xl my-4">لاتوجد سلع تطابق المحدد</h1>
-                        <!-- <inertia-link class="lead text-decoration-none text-blue-300 hover:text-yellow-400 transition duration-500" href="/products/create">اضغط هنا لاضافة سلع جديده</inertia-link> -->
+                        <h1 class="text-white text-4xl my-4">No Products</h1>
                     </div>
                     <!--  Pagination  -->
                     <div v-if="products" class="flex justify-center my-3">

@@ -1,21 +1,21 @@
 <template>
-    <pageTitle title="اضافة قسم جديد" />
+    <pageTitle title="Create" />
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
 
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 text-center mt-4">
-                    <Title text="اضافة قسم جديد" />
+                    <Title text="Create" />
 
                     <form class="mt-5 space-y-3 w-75 mx-auto" @submit.prevent="createCat" enctype="multipart/form-data" method="POST">
 
-                        <label for="cat_name" class="block text-right text-white mr-2 mb-2">اسم القسم:</label>
+                        <label for="cat_name" class="block text-right text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="cat_name" type="text" v-model="categories.cat_name" :class="{ 'is-invalid': errors.cat_name }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.cat_name }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صورة القسم</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -29,7 +29,7 @@
                         <small class="text-red-300 mr-auto mb-3">{{ errors.img_url }}</small>
 
                         <div class="flex justify-around my-4">
-                            <button :disabled="categories.processing || !categories.cat_name || !categories.img_url" type="submit" class="btn btn-outline-primary px-5 text-white">اضافة</button>
+                            <button :disabled="categories.processing || !categories.cat_name || !categories.img_url" type="submit" class="btn btn-outline-primary px-5 text-white">Create</button>
                         </div>
 
                     </form>
@@ -90,12 +90,12 @@
                 if (this.imgExt.includes(e.target.files[0].name.split('.').pop())){
                     flag +=1
                 }else{
-                    alert('رجاء قم بأختيار صورة مناسبة')
+                    alert('Please select Image format')
                 }
                 if ( (e.target.files[0].size) <= 2097152){
                     flag +=1
                 }else{
-                    alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                    alert('Image selected more than 2MB')
                 }
                 if(flag >=2){
                     this.categories.img_url = e.target.files[0]

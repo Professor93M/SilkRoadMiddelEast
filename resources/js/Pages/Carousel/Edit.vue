@@ -2,33 +2,33 @@
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0">
             <div class="grid lg:grid-cols-12 w-full bg-gray-700">
-                <pageTitle :title="'تعديل ' + carousel.title" />
+                <pageTitle :title="'Edit ' + carousel.title" />
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 text-center mt-4">
-                    <Title text="تعديل الاعلان" />
+                    <Title text="Edit" />
 
                     <form class="mt-5 space-y-3 w-75 mx-auto" @submit.prevent="editCar">
 
-                        <Switch name="state" text="عرض الاعلان" @change="changeState" :checked="carousel.state" />
+                        <Switch name="state" text="Show" @change="changeState" :checked="carousel.state" />
 
-                        <label for="title" class="block text-right text-white mr-2 mb-2">العنوان:</label>
+                        <label for="title" class="block text-right text-white mr-2 mb-2">Title</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="title" type="text" v-model="carousel.title" :class="{ 'is-invalid': errors.title }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.title">{{ errors.title }}</small>
 
-                        <label for="description" class="block text-right text-white mr-2 mb-2">الوصف:</label>
+                        <label for="description" class="block text-right text-white mr-2 mb-2">Description</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <textarea type="text" rows="5" v-model="carousel.description" :class="{ 'is-invalid': errors.description }" class="max-height px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.description">{{ errors.description }}</small>
 
-                        <label for="url" class="block text-right text-white mr-2 mb-2">رابط الاعلان:</label>
+                        <label for="url" class="block text-right text-white mr-2 mb-2">URL</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="url" type="text" v-model="carousel.url" :class="{ 'is-invalid': errors.url }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.url">{{ errors.url }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">صورة الاعلان</label>
+                        <label for="img" class="block text-right text-white mr-2 mb-2">Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -41,21 +41,21 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.img_url }}</small>
 
-                        <label class="block text-right text-white mr-2 mb-2">تاريخ الاضافة:</label>
+                        <label class="block text-right text-white mr-2 mb-2">Created at</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <label class="text-white">{{ moment(carousels.data.created_at).locale("ar").fromNow() }}</label>
                         </div>
 
                         <div v-if="carousels.data.created_at !== carousels.data.updated_at">
-                            <label class="block text-right text-white mr-2 mb-2">اخر تعديل:</label>
+                            <label class="block text-right text-white mr-2 mb-2">Last Update</label>
                             <div class="mt-1 relative rounded-md shadow-sm mb-3">
                                 <label class="text-white">{{ moment(carousels.data.updated_at).locale("ar").fromNow() }}</label>
                             </div>
                         </div>
 
                         <div class="flex justify-around my-4">
-                            <button type="submit" class="btn btn-outline-primary px-5 text-white">تعديل</button>
-                            <button @click.prevent="deleteCar" class="btn btn-outline-danger px-5 text-white">حذف</button>
+                            <button type="submit" class="btn btn-outline-primary px-5 text-white">Update</button>
+                            <button @click.prevent="deleteCar" class="btn btn-outline-danger px-5 text-white">Delete</button>
                         </div>
 
                     </form>
@@ -121,10 +121,10 @@
             deleteCar(){
                 this.$swal({
                     icon: 'error',
-                    title: 'هل تريد حذف '+ this.carousel.title +' فعلاً',
+                    title: 'Do you want to delete '+ this.carousel.title +' ?',
                     showDenyButton: true,
-                    confirmButtonText: `نعم`,
-                    denyButtonText: `كلا`,
+                    confirmButtonText: `Yes`,
+                    denyButtonText: `No`,
                     reverseButtons: true,
                     }).then((result) => {
                     if (result.isConfirmed) {
@@ -140,12 +140,12 @@
                 if (this.imgExt.includes(e.target.files[0].name.split('.').pop())){
                     flag +=1
                 }else{
-                    alert('رجاء قم بأختيار صورة مناسبة')
+                    alert('Please select Image format')
                 }
                 if ( (e.target.files[0].size) <= 2097152){
                     flag +=1
                 }else{
-                    alert('يجب ان لا يتجاوز حجم الصورة 2MB')
+                    alert('Image selected more than 2MB')
                 }
                 if(flag >=2){
                     this.carousel.img_url = e.target.files[0]

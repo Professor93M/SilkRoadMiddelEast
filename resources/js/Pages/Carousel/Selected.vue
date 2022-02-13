@@ -2,16 +2,16 @@
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
-                <pageTitle :title="title ? title : 'الاعلانات'" />
+                <pageTitle :title="title ? title : 'Carousels'" />
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
-                    <Title :text="title ? title : 'الاعلانات'" />
+                    <Title :text="title ? title : 'Carousels'" />
 
                     <div class="mx-3">
                         <inertia-link href="/carousel/create" type="submit" class="btn btn-outline-primary text-white float-left px-3 my-2 flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
                                 <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
                             </svg>
-                            <span class="mx-2">اضافة اعلان</span>
+                            <span class="mx-2">Create</span>
                         </inertia-link>
                     </div>
 
@@ -21,18 +21,18 @@
                             <table class="table table-dark table-hover table-striped text-center text-white table-fixed align-middle">
                                 <thead>
                                     <tr class="text-muted">
-                                        <th class="select-none">العنوان</th>
-                                        <th class="select-none">حالة الاعلان</th>
-                                        <th class="select-none">الصورة</th>
-                                        <th class="select-none">تاريخ الاضافة</th>
+                                        <th class="select-none">Title</th>
+                                        <th class="select-none">State</th>
+                                        <th class="select-none">Image</th>
+                                        <th class="select-none">Created at</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="car in carousel.data" :key="car.id" @click="selectCar(car.id)" class="cursor-pointer">
                                         <th>{{ car.title }}</th>
-                                        <th :class="car.state == true ? 'text-green-500' : 'text-red-500'">{{ car.state == true ? "معلن" : "غير معلن" }}</th>
-                                        <th v-if="car.image"><img loading="lazy" :src="'images/' + car.image.img_url" alt="صورة" class="mx-auto" width="60" height="60"></th>
-                                        <th v-else><img loading="lazy" src="storage/carousel/time.png" alt="الصورة غير متوفرة" class="mx-auto" width="60" height="60"></th>
+                                        <th :class="car.state == true ? 'text-green-500' : 'text-red-500'">{{ car.state == true ? "Show" : "Hidden" }}</th>
+                                        <th v-if="car.image"><img loading="lazy" :src="'images/' + car.image.img_url" alt="Image" class="mx-auto" width="60" height="60"></th>
+                                        <th v-else><img loading="lazy" src="storage/carousel/time.png" alt="Image Unavailable" class="mx-auto" width="60" height="60"></th>
                                         <th>{{ moment(car.created_at).format('YYYY-MM-DD') }}</th>
                                     </tr>
                                 </tbody>
@@ -56,8 +56,8 @@
                         </div>
                     </div>
                     <div v-else class="text-center mt-5">
-                        <h1 class="text-white text-4xl my-4">لم يتم انشاء اي اعلان لحد الان</h1>
-                        <inertia-link class="lead text-decoration-none text-blue-300 hover:text-yellow-400 transition duration-500" href="/carousel/create">اضغط هنا لانشاء قسم جديد</inertia-link>
+                        <h1 class="text-white text-4xl my-4">No Carousel added</h1>
+                        <inertia-link class="lead text-decoration-none text-blue-300 hover:text-yellow-400 transition duration-500" href="/carousel/create">Create</inertia-link>
                     </div>
                 </div>
             </div>

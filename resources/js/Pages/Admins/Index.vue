@@ -2,20 +2,14 @@
     <breeze-authenticated-layout :isAdmin="isAdmin" :orderCount="orderCount" :doneOrder="doneOrder">
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
-                <pageTitle title="المشرفين" />
+                <pageTitle title="Admins" />
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
-                    <Title text="المشرفين" />
+                    <Title text="Admins" />
 
                     <div class="float-right mx-3 my-3">
                         <inertia-link href="/register" type="submit" class="btn btn-outline-primary text-white float-left px-3 flex">
                             <fa icon="user-plus" class="text-xl" />
-                            <span class="mx-2">اضافة مشرف</span>
-                        </inertia-link>
-                    </div>
-                    <div class="float-left mx-3 my-3">
-                        <inertia-link href="/logs" type="submit" class="btn btn-outline-success text-white float-left px-3 flex">
-                            <fa icon="clipboard-list" class="text-xl" />
-                            <span class="mx-2">سجل الشرفين</span>
+                            <span class="mx-2">Create</span>
                         </inertia-link>
                     </div>
 
@@ -27,17 +21,17 @@
                                     <tr class="text-muted">
                                         <th>
                                             <p class="flex justify-center">
-                                                الاسم
+                                                Name
                                             </p>
                                         </th>
                                         <th>
                                             <p class="flex justify-center">
-                                                البريد الالكتروني
+                                                Email
                                             </p>
                                         </th>
                                         <th>
                                             <p class="flex justify-center">
-                                                تاريخ الاضافة
+                                                Created at
                                             </p>
                                         </th>
                                     </tr>
