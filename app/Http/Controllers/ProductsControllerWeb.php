@@ -5,7 +5,6 @@ use App\Http\Resources\ProductsResources;
 use App\Http\Requests\ProductsRequest;
 use App\Models\Categories;
 use App\Models\Images;
-use App\Models\logs;
 use App\Models\Products;
 use App\Models\subCat;
 use Illuminate\Http\Request;
@@ -14,14 +13,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-
-function LogsP($req, $text){
-    logs::create([
-        'log' => $text . ' ('. $req .')',
-        'username' => Auth::user()->name,
-        'isUser' => 2,
-    ]);
-}
 
 class ProductsControllerWeb extends Controller
 {
@@ -115,21 +106,7 @@ class ProductsControllerWeb extends Controller
                 Images::make(['img_url' => $img_url[$i]])
             );
         }
-
-        LogsP($request->pd_name, 'اضافة السلعة');
-
-        return Redirect::route('products.index')->with('success', 'تم انشاء سلعة جديدة');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return Redirect::route('products.index')->with('success', 'Added Successfuly');
     }
 
     /**
@@ -183,19 +160,15 @@ class ProductsControllerWeb extends Controller
         if(empty($request->img_url) && empty($request->old_img)){
             $request->validate([
                 'img_url' => 'required',
-                ],[
-                'img_url.required'       => 'يجب ادخال صورة على الاقل',
             ]);
         }elseif(array_diff($new_img, $old_img)){
             foreach(array_diff($new_img, $old_img) as $diff){
                 if(Storage::disk('public')->exists($diff)){
                     Storage::disk('public')->delete($diff);
                     Images::where('img_url', $diff)->delete();
-                }else{echo "عذرا هنالك خطا";}
+                }else{echo "Error";}
             }
         }
-    // Begin Validate All Inputs
-
         if( ($request->pd_name         !== $products->pd_name) ||
             ($request->pd_price        !== $products->pd_price) ||
             ($request->pd_stack        !== $products->pd_stack) ||
@@ -212,70 +185,48 @@ class ProductsControllerWeb extends Controller
             if($request->pd_name !== $products->pd_name){
                 $request->validate([
                     'pd_name'        => 'unique:products|required|min:2',
-                    ],[
-                    'pd_name.required'        => 'يجب ادخال اسم السلعة',
-                    'pd_name.unique'          => 'اسم السلعة موجود فعلا',
                     ]
                 );
             }
             if($request->pd_price !== $products->pd_price){
                 $request->validate([
                     'pd_price'       => 'Numeric|required',
-                    ],[
-                    'pd_price.Numeric'        => 'يجب ادخال عدد فقط',
-                    'pd_price.required'       => 'يجب ادخال سعر السلعة',
                     ]
                 );
             }
             if($request->pd_stack !== $products->pd_stack){
                 $request->validate([
                     'pd_stack'       => 'Numeric|required',
-                    ],[
-                    'pd_stack.Numeric'        => 'يجب ادخال عدد فقط',
-                    'pd_stack.required'       => 'يجب ادخال المخزن للسلعة',
                     ]
                 );
             }
             if($request->pd_description !== $products->pd_description){
                 $request->validate([
                     'pd_description'       => 'required|min:5',
-                    ],[
-                    'pd_description.required'       => 'يجب ادخال وصف للسلعة',
-                    'pd_description.min'            => 'يجب ادخال على الاقل 5 حروف للوصف',
                     ]
                 );
             }
             if($request->phone !== $products->phone){
                 $request->validate([
-                    'phone'       => 'required|regex:/(07)[0-9]{9}$/',
-                    ],[
-                    'phone.regex'        => 'رقم الهاتف يجب ان يتكون من 11 رقم ويبداء بـ 07 وبالانكليزي',
-                    'phone.required'       => 'يجب ادخال رقم الهاتف',
+                    'phone'       => 'required',
                     ]
                 );
             }
             if($request->message !== $products->message){
                 $request->validate([
                     'message'       => 'required|min:10',
-                    ],[
-                    'message.required'       => 'يجب ادخال رسالة بدء المحادثة',
-                    'message.min'            => 'الرسالة المدخلة قصيرة',
                     ]
                 );
             }
             if($request->review !== $products->review){
                 $request->validate([
                     'review'       => 'url',
-                    ],[
-                    'review.url'       => 'يجب ادخال رابط صحيح',
                     ]
                 );
             }
             if($request->file('cover') !== null){
                 $request->validate([
                     'cover'       => 'required',
-                    ],[
-                    'cover.required'        => 'يجب ادخال صورة الغلاف للسلعة',
                     ]
                 );
                 if(Storage::disk('public')->exists($products->cover)){
@@ -288,18 +239,12 @@ class ProductsControllerWeb extends Controller
             if(($request->categories_id   !== $products->categories_id)){
                 $request->validate([
                     'categories_id'       => 'required|numeric',
-                    ],[
-                    'categories_id.required'       => 'يجب اختيار القسم الرئيسي',
-                    'categories_id.numeric'       => 'هنالك مشكلة في القسم الرئيسي رجاء اتصل في المبرمج',
                     ]
                 );
             }
             if(($request->sub_cats_id   !== $products->sub_cats_id)){
                 $request->validate([
                     'sub_cats_id'       => 'required|numeric',
-                    ],[
-                    'sub_cats_id.required'       => 'يجب اختيار القسم الرئيسي',
-                    'sub_cats_id.numeric'       => 'هنالك مشكلة في القسم الرئيسي رجاء اتصل في المبرمج',
                     ]
                 );
             }
@@ -320,9 +265,6 @@ class ProductsControllerWeb extends Controller
             if($request->file('img_url') !== null){
                 $request->validate([
                     'img_url.*' => 'mimes:jpeg,jpg,gif,png|max:1000',
-                    ],[
-                    'img_url.*.mimes'       => 'امتداد الصورة المطلوب : jpeg,jpg,gif,png',
-                    'img_url.*.max'       => 'يجب ان لا يتجاوز حجم الصورة 1MB',
                 ]);
                 for($i = 0; $i < count($request->file('img_url'));$i++){
                     $images = $request->file('img_url')[$i]->store('products', 'public');
@@ -331,9 +273,7 @@ class ProductsControllerWeb extends Controller
                     );
                 }
             }
-    // End Validate All Inputs
-            LogsP($request->pd_name, 'تعديل السلعة');
-            return redirect()->route('products.index')->with('success', 'تم تعديل السلعة بنجاح');
+            return redirect()->route('products.index')->with('success', 'Updated Successfuly');
         }else{
             return redirect()->route('products.index');
         }
@@ -359,9 +299,7 @@ class ProductsControllerWeb extends Controller
         }
         $products->delete();
 
-        LogsP($products->pd_name, 'حذف السلعة');
-
-        return Redirect::route('products.index')->with('success', 'تم الحذف بنجاح');
+        return Redirect::route('products.index')->with('success', 'Deleted Successfuly');
     }
 
     public function productsDash(){

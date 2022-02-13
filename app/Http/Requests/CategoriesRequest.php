@@ -28,14 +28,4 @@ class CategoriesRequest extends FormRequest
             'img_url' => 'required',
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'cat_name.required'        => 'يجب ادخال اسم الصنف',
-            'cat_name.unique' => 'اسم الصنف موجود فعلا',
-
-            'img_url.required'    => 'يجب اختيار صورة للصنف',
-        ];
-    }
 }

@@ -6,7 +6,6 @@ use App\Http\Requests\CategoriesRequest;
 use App\Http\Resources\CategoriesResources;
 use App\Models\Categories;
 use App\Models\Images;
-use App\Models\logs;
 use App\Models\subCat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,14 +13,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-
-function LogsCat($req, $text){
-    logs::create([
-        'log' => $text . ' ('. $req .')',
-        'username' => Auth::user()->name,
-        'isUser' => 2,
-    ]);
-}
 
 class CategoriesController extends Controller
 {
@@ -83,9 +74,7 @@ class CategoriesController extends Controller
         $categories->image()->save(
             Images::make(['img_url' => $img_url])
         );
-        LogsCat($request->cat_name, 'انشاء قسم رئيسي');
-
-        return Redirect::route('categories.index')->with('success', 'تم انشاء القسم بنجاح');
+        return Redirect::route('categories.index')->with('success', 'Added Successfuly');
     }
 
     /**
@@ -140,18 +129,12 @@ class CategoriesController extends Controller
             if($request->cat_name !== $categories->cat_name){
                 $request->validate([
                     'cat_name' => 'unique:categories|required|min:1'
-                    ],[
-                    'cat_name.required'        => 'يجب ادخال اسم القسم',
-                    'cat_name.unique'          => 'اسم القسم موجود فعلا',
                 ]);
                 $categories->update(['cat_name' => $request->cat_name]);
             }
             if($request->file('img_url') !== null){
                 $request->validate([
                     'img_url' => 'mimes:jpeg,jpg,gif,png|max:1000',
-                    ],[
-                    'img_url.mimes'       => 'امتداد الصورة المطلوب : jpeg,jpg,gif,png',
-                    'img_url.max'       => 'يجب ان لا يتجاوز حجم الصورة 1MB',
                 ]);
                 if(Storage::disk('public')->exists($categories->image->img_url)){
                     Storage::disk('public')->delete($categories->image->img_url);
@@ -161,8 +144,7 @@ class CategoriesController extends Controller
                     ['img_url' => $categories->image->img_url]
                 );
             }
-            LogsCat($request->cat_name, 'تحديث قسم رئيسي');
-            return Redirect::route('categories.index')->with('success', 'تم تعديل القسم بنجاح');
+            return Redirect::route('categories.index')->with('success', 'Updated Successfuly');
         }else{
             return Redirect::route('categories.index');
         }
@@ -183,7 +165,6 @@ class CategoriesController extends Controller
         $categories->image()->delete();
         $categories->delete();
 
-        LogsCat($categories->cat_name, 'حذف قسم رئيسي');
-        return Redirect::route('categories.index')->with('success', 'تم حذف القسم بنجاح');
+        return Redirect::route('categories.index')->with('success', 'Deleted Successfuly');
     }
 }

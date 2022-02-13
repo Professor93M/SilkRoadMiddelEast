@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Images;
-use App\Models\logs;
 use App\Models\Products;
 use App\Models\subCat;
 use Illuminate\Http\Request;
@@ -13,14 +12,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-
-function LogsSub($req, $text){
-    logs::create([
-        'log' => $text . ' ('. $req .')',
-        'username' => Auth::user()->name,
-        'isUser' => 2,
-    ]);
-}
 
 class SubCatController extends Controller
 {
@@ -92,8 +83,7 @@ class SubCatController extends Controller
         $subcat->image()->save(
             Images::make(['img_url' => $img_url])
         );
-        LogsSub($request->cat_name, 'انشاء قسم فرعي');
-        return Redirect::route('subcat.index')->with('success', 'تم انشاء قسم فرعي بنجاح');
+        return Redirect::route('subcat.index')->with('success', 'Added Successfuly');
     }
 
     /**
@@ -153,9 +143,6 @@ class SubCatController extends Controller
             if($request->cat_name !== $categories->cat_name){
                 $request->validate([
                     'cat_name' => 'unique:sub_cats|required'
-                    ],[
-                    'cat_name.required'        => 'يجب ادخال اسم القسم',
-                    'cat_name.unique'          => 'اسم القسم موجود فعلا',
                 ]);
             }
             $categories->update([
@@ -165,9 +152,6 @@ class SubCatController extends Controller
             if($request->file('img_url') !== null){
                 $request->validate([
                     'img_url' => 'mimes:jpeg,jpg,gif,png|max:2000',
-                    ],[
-                    'img_url.mimes'       => 'امتداد الصورة المطلوب : jpeg,jpg,gif,png',
-                    'img_url.max'       => 'يجب ان لا يتجاوز حجم الصورة 2MB',
                 ]);
                 if(Storage::disk('public')->exists($categories->image->img_url)){
                     Storage::disk('public')->delete($categories->image->img_url);
@@ -177,8 +161,7 @@ class SubCatController extends Controller
                     ['img_url' => $categories->image->img_url]
                 );
             }
-            LogsSub($request->cat_name, 'تحديث قسم فرعي');
-            return Redirect::route('subcat.index')->with('success', 'تم تعديل القسم الفرعي بنجاح');
+            return Redirect::route('subcat.index')->with('success', 'Updated Successfuly');
         }else{
             return Redirect::route('subcat.index');
         }
@@ -199,7 +182,6 @@ class SubCatController extends Controller
         $categories->image()->delete();
         $categories->delete();
 
-        LogsSub($categories->cat_name, 'حذف قسم فرعي');
-        return Redirect::route('subcat.index')->with('success', 'تم حذف القسم الفرعي بنجاح');
+        return Redirect::route('subcat.index')->with('success', 'Deleted Successfuly');
     }
 }

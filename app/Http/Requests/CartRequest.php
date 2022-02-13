@@ -34,26 +34,4 @@ class CartRequest extends FormRequest
             'comment' => 'nullable',
         ];
     }
-    public function messages()
-    {
-        return [
-            'first_name.required'        => 'يجب ادخال اسم الاول للمشتري',
-            'first_name.max'          => 'يجب ان لا يتجاوز الاسم 20 حرف',
-
-            'last_name.required'        => 'يجب ادخال اسم العائلة (الاب) للمشتري',
-            'last_name.max'          => 'يجب ان لا يتجاوز الاسم 20 حرف',
-
-            'email.email'         => 'البريد الالكتروني غير صالح',
-
-            'mobile.required'       => 'يجب ادخال رقم الهاتف',
-            'mobile.regex'        => 'رقم الهاتف يجب ان يتكون من 11 رقم ويبداء بـ 07',
-
-            'mobile2.regex'        => 'رقم الهاتف يجب ان يتكون من 11 رقم ويبداء بـ 07',
-
-            'governorate.required'       => 'يجب تحديد المحافظة',
-
-            'address.required'       => 'يجب ادخال عنوان السكن واقرب نقطة دالة',
-            'address.min'        => 'العنوان الذي ادخلته قصير',
-        ];
-    }
 }

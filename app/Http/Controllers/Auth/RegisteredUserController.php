@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\logs;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -12,14 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
-
-function LogsU($req, $text){
-    logs::create([
-        'log' => $text . ' ('. $req .')',
-        'username' => Auth::user()->name,
-        'isUser' => 2,
-    ]);
-}
 
 class RegisteredUserController extends Controller
 {
@@ -58,8 +49,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'email_verified_at' => now(),
         ]);
-
-        LogsU($user->name, 'انشاء مشرف');
 
         event(new Registered($user));
 

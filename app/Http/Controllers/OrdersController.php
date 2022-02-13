@@ -4,19 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Orders;
 use App\Models\Cart;
-use App\Models\logs;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-
-function LogsO($req, $text){
-    logs::create([
-        'log' => $text . ' ('. $req .')',
-        'username' => Auth::user()->name,
-        'isUser' => 2,
-    ]);
-}
 
 class OrdersController extends Controller
 {
@@ -66,9 +57,7 @@ class OrdersController extends Controller
             $cart = Cart::findOrFail(request('id'));
             $orders = Orders::where('cart_id', $cart->id)->get('state');
             $orders = Orders::whereIn('state', $orders)->where('cart_id', $cart->id)->update(array('state' => 1));
-            LogsO($cart->first_name . ' ' . $cart->last_name, 'تجهيز طلب');
-
-            return redirect()->route('orders.index')->with('success', 'تم تجهيز الطلب بنجاح');
+            return redirect()->route('orders.index')->with('success', 'Order has been processed successfully');
         }elseif(request('state') === 2){
             $cart = Cart::findOrFail(request('id'));
             $products = Products::all();
@@ -82,33 +71,20 @@ class OrdersController extends Controller
                     }
                 }
             }
-            LogsO($cart->first_name . ' ' . $cart->last_name, 'تخزين طلب');
 
-            return redirect()->route('orders.checked')->with('success', 'تم تخزين الطلب بنجاح');
+            return redirect()->route('orders.checked')->with('success', 'Stored Successfuly');
         }elseif(request('state') === 3){
             $cart = Cart::findOrFail(request('id'));
             $orders = Orders::where('cart_id', $cart->id)->get('state');
             $orders = Orders::whereIn('state', $orders)->where('cart_id', $cart->id)->update(array('state' => 0));
-            LogsO($cart->first_name . ' ' . $cart->last_name, 'تراجع عن تجهيز طلب');
-
-            return redirect()->route('orders.checked')->with('success', 'تم التراجع عن التجهيز بنجاح');
+            return redirect()->route('orders.checked')->with('success', 'Backforward Successfuly');
         }
-        // elseif(request('state') === 4){
-        //     $cart = Cart::findOrFail(request('id'));
-        //     $orders = Orders::where('cart_id', $cart->id)->get('state');
-        //     $orders = Orders::whereIn('state', $orders)->where('cart_id', $cart->id)->update(array('state' => 1));
-        //     LogsO($cart->first_name . ' ' . $cart->last_name, 'تراجع عن حفظ طلب');
-
-        //     return redirect()->route('orders.history')->with('success', 'تم التراجع عن الحفظ بنجاح');
-        // }
     }
 
     public function delete($id){
         $cart = Cart::findOrFail($id);
         $cart->delete();
-        LogsO($cart->first_name . ' ' . $cart->last_name, 'حذف طلب');
-
-        return Redirect::route('orders.index')->with('success', 'تم حذف الطلب بنجاح');
+        return Redirect::route('orders.index')->with('success', 'Order Deleted Successfuly');
     }
 
     public function checked(){

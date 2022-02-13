@@ -7,19 +7,10 @@ use App\Models\Images;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Resources\CarouselResources;
-use App\Models\logs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-
-function LogsCar($req, $text){
-    logs::create([
-        'log' => $text . ' ('. $req .')',
-        'username' => Auth::user()->name,
-        'isUser' => 2,
-    ]);
-}
 
 class CarouselController extends Controller
 {
@@ -85,8 +76,7 @@ class CarouselController extends Controller
         $carousel->image()->save(
             Images::make(['img_url' => $img_url])
         );
-        LogsCar($request->title, 'انشاء اعلان');
-        return Redirect::route('carousel.index')->with('success', 'تم انشاء الاعلان بنجاح');
+        return Redirect::route('carousel.index')->with('success', 'Added Successfuly');
     }
 
     /**
@@ -132,23 +122,16 @@ class CarouselController extends Controller
             if($request->title !== $carousel->title){
                 $request->validate([
                     'title' => 'required|min:3',
-                    ],[
-                    'title.required'        => 'يجب ادخال عنوان الاعلان',
-                    'title.min'             => 'العنوان قصير!',
                 ]);
             }
             if($request->description !== $carousel->description){
                 $request->validate([
                     'description' => 'nullable|min:10',
-                    ],[
-                    'description.min'        => 'الوصف قصير!',
                 ]);
             }
             if($request->url !== $carousel->url){
                 $request->validate([
                     'url' => 'nullable|URL',
-                    ],[
-                    'url.URL'        => 'يجب ادخال رابط صحيح',
                 ]);
             }
             $carousel->update([
@@ -160,9 +143,6 @@ class CarouselController extends Controller
             if($request->file('img_url') !== null){
                 $request->validate([
                     'img_url' => 'mimes:jpeg,jpg,gif,png|max:2000',
-                    ],[
-                    'img_url.mimes'       => 'امتداد الصورة المطلوب : jpeg,jpg,gif,png',
-                    'img_url.max'       => 'يجب ان لا يتجاوز حجم الصورة 2MB',
                 ]);
                 if(Storage::disk('public')->exists($carousel->image->img_url)){
                     Storage::disk('public')->delete($carousel->image->img_url);
@@ -172,8 +152,7 @@ class CarouselController extends Controller
                     ['img_url' => $carousel->image->img_url]
                 );
             }
-            LogsCar($request->title, 'تحديث اعلان');
-            return Redirect::route('carousel.index')->with('success', 'تم تعديل الاعلان بنجاح');
+            return Redirect::route('carousel.index')->with('success', 'Updated Successfuly');
         }else{
             return Redirect::route('carousel.index');
         }
@@ -194,8 +173,7 @@ class CarouselController extends Controller
         $carousel->image()->delete();
         $carousel->delete();
 
-        LogsCar($carousel->title, 'حذف اعلان');
-        return Redirect::route('carousel.index')->with('success', 'تم حذف الاعلان بنجاح');
+        return Redirect::route('carousel.index')->with('success', 'Deleted Successfuly');
     }
 
     public function carouselDash(){

@@ -17,12 +17,11 @@ class Products extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('pd_name');
-            $table->bigInteger('pd_price');
-            $table->integer('pd_stack');
+            $table->bigInteger('pd_price')->default(0);
+            $table->integer('pd_stack')->default(0);
             $table->boolean('pd_state')->default(0);
             $table->text('pd_description');
-            $table->bigInteger('phone')->default('7733111109');
-            $table->text('message')->default('اريد الاستفسار عن هذه السلعة');
+            $table->text('company')->nullable();
             $table->text('review')->nullable();
             $table->text('cover');
             $table->bigInteger('categories_id')->unsigned();
