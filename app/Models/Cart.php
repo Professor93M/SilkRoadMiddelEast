@@ -17,7 +17,7 @@ class Cart extends Model
         'mobile',
         'mobile2',
         'address',
-        'location',
+        'country',
         'comment',
     ];
     public function orders(){

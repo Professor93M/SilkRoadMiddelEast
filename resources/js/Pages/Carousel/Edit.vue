@@ -10,25 +10,25 @@
 
                         <Switch name="state" text="Show" @change="changeState" :checked="carousel.state" />
 
-                        <label for="title" class="block text-right text-white mr-2 mb-2">Title</label>
+                        <label for="title" class="block text-left text-white mr-2 mb-2">Title</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="title" type="text" v-model="carousel.title" :class="{ 'is-invalid': errors.title }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.title">{{ errors.title }}</small>
 
-                        <label for="description" class="block text-right text-white mr-2 mb-2">Description</label>
+                        <label for="description" class="block text-left text-white mr-2 mb-2">Description</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <textarea type="text" rows="5" v-model="carousel.description" :class="{ 'is-invalid': errors.description }" class="max-height px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.description">{{ errors.description }}</small>
 
-                        <label for="url" class="block text-right text-white mr-2 mb-2">URL</label>
+                        <label for="url" class="block text-left text-white mr-2 mb-2">URL</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="url" type="text" v-model="carousel.url" :class="{ 'is-invalid': errors.url }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.url">{{ errors.url }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">Image</label>
+                        <label for="img" class="block text-left text-white mr-2 mb-2">Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -41,15 +41,15 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.img_url }}</small>
 
-                        <label class="block text-right text-white mr-2 mb-2">Created at</label>
+                        <label class="block text-left text-white mr-2 mb-2">Created at</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                            <label class="text-white">{{ moment(carousels.data.created_at).locale("ar").fromNow() }}</label>
+                            <label class="text-white">{{ moment(carousels.data.created_at).fromNow() }}</label>
                         </div>
 
                         <div v-if="carousels.data.created_at !== carousels.data.updated_at">
-                            <label class="block text-right text-white mr-2 mb-2">Last Update</label>
+                            <label class="block text-left text-white mr-2 mb-2">Last Update</label>
                             <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                                <label class="text-white">{{ moment(carousels.data.updated_at).locale("ar").fromNow() }}</label>
+                                <label class="text-white">{{ moment(carousels.data.updated_at).fromNow() }}</label>
                             </div>
                         </div>
 
@@ -173,7 +173,7 @@
 </script>
 <style >
     .X{
-        left:-50%
+        left:50%
     }
     .swal2-popup{
         display: block !important;

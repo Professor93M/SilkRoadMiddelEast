@@ -7,7 +7,7 @@
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 text-center mt-4">
                     <Title text="Edit" />
 
-                    <div class="text-left ml-4">
+                    <div class="text-right ml-4">
                         <inertia-link :href="`/categories/${category.id}`" type="submit" class="btn btn-outline-danger text-white px-3 text-xs " title="Show SubCategories">
                             Show SubCategories
                             <div class="float-right pl-2">
@@ -18,13 +18,13 @@
 
                     <form class="mt-2 space-y-3 w-75 mx-auto" @submit.prevent="editCat">
 
-                        <label for="cat_name" class="block text-right text-white mr-2 mb-2">Name</label>
+                        <label for="cat_name" class="block text-left text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="cat_name" type="text" v-model="category.cat_name" :class="{ 'is-invalid': errors.cat_name }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.cat_name">{{ errors.cat_name }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">Image</label>
+                        <label for="img" class="block text-left text-white mr-2 mb-2">Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -37,15 +37,15 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.img_url }}</small>
 
-                        <label class="block text-right text-white mr-2 mb-2">Created at</label>
+                        <label class="block text-left text-white mr-2 mb-2">Created at</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                            <label class="text-white">{{ moment(categories.data.created_at).locale("ar").fromNow() }}</label>
+                            <label class="text-white">{{ moment(categories.data.created_at).fromNow() }}</label>
                         </div>
 
                         <div v-if="categories.data.created_at !== categories.data.updated_at">
-                            <label class="block text-right text-white mr-2 mb-2">Last Update</label>
+                            <label class="block text-left text-white mr-2 mb-2">Last Update</label>
                             <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                                <label class="text-white">{{ moment(categories.data.updated_at).locale("ar").fromNow() }}</label>
+                                <label class="text-white">{{ moment(categories.data.updated_at).fromNow() }}</label>
                             </div>
                         </div>
 
@@ -161,7 +161,7 @@
 </script>
 <style >
     .X{
-        left:-50%
+        left:50%
     }
     .swal2-popup{
         display: block !important;

@@ -22,7 +22,7 @@ class CartsTable extends Migration
             $table->bigInteger('mobile2')->nullable();
             $table->string('governorate');
             $table->text('address');
-            $table->text('location');
+            $table->text('country');
             $table->text('comment')->nullable();
             $table->timestamps();
         });

@@ -1,7 +1,7 @@
 <template>
     <Disclosure id="nav" as="nav" class="bg-gray-800 sticky top-0 z-50" v-slot="{ open }">
         <!-- Large -->
-        <div class="grid lg:grid-cols-3 lg:gap-3 gap-1 grid-cols-1 items-center justify-center lg:h-20">
+        <div class="grid lg:grid-cols-3 lg:gap-3 gap-1 grid-cols-1 items-center py-2 justify-center lg:h-20">
             <div class="flex items-center justify-center lg:justify-start lg:col-start-1 lg:col-end-2 my-1 lg:my-auto">
                 <DisclosureButton class="ml-auto mr-2 inline-flex justify-center p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset lg:hidden">
                     <span class="sr-only">Open</span>
@@ -9,7 +9,7 @@
                     <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
                 </DisclosureButton>
                 <div class="flex-shrink-0 flex items-center px-3 ">
-                    <BreezeApplicationLogo class="block w-24 mt-1 mx-2 order1" />
+                    <BreezeApplicationLogo class="block w-36 mt-1 mx-2 order1" />
                     <inertia-link href="/" class="font-extrabold text-gray-400 text-2xl font-mono filter drop-shadow-lg hover:text-gray-100 transition duration-500">Silk Road MiddleEast</inertia-link>
                 </div>
             </div>
@@ -43,12 +43,12 @@
                 </inertia-link>
 
                 <!-- لوحة التحكم -->
-                <inertia-link v-if="logged" href="/dashboard" class="my-auto lg:hiddencursor-pointer hover:bg-gray-600 flex mx-1 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800">
+                <inertia-link v-if="logged" href="/dashboard" class="my-auto lg:hidden cursor-pointer hover:bg-gray-600 flex mx-1 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800">
                     <fa icon="cog" class="text-xl text-yellow-300 m-1" />
                 </inertia-link>
 
-                <inertia-link @click.prevent="search" href="/search" class="btn btn-outline-secondary text-lg text-gray-400 font-bold rounded-l-none rounded-r-lg border-2 border-gray-400 -ml-1">ابحث</inertia-link>
-                <input dir="rtl" @keypress.enter="search" placeholder="البحث ..." v-model="searchData.s" type="search" name="search" class="w-full placeholder-opacity-50 rounded-r-none rounded-l-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
+                <inertia-link @click.prevent="search" href="/search" class="btn btn-outline-secondary text-lg text-gray-400 font-bold rounded-l-none rounded-r-lg border-2 border-gray-400 -ml-1">Search</inertia-link>
+                <input dir="rtl" @keypress.enter="search" placeholder="Search ..." v-model="searchData.s" type="search" name="search" class="w-full placeholder-opacity-50 rounded-r-none rounded-l-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
             </div>
             <div class="hidden lg:block col-start-9 col-end-13 ml-3">
                 <div class="flex">

@@ -8,7 +8,7 @@
 
                     <div class="mb-3 mx-3">
                         <input dir="rtl" placeholder="Search ..." v-model="params.search" type="search" name="search" class="w-1/2 placeholder-opacity-50 rounded-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
-                        <inertia-link href="/products/create" type="submit" class="btn btn-outline-primary text-white float-left px-3 flex">
+                        <inertia-link href="/products/create" type="submit" class="btn btn-outline-primary text-white float-right px-3 flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
                             </svg>
@@ -23,7 +23,7 @@
                         <transition name="filter">
                             <fieldset v-if="showFilter" class="flex flex-wrap justify-center">
                                 <div class="form-group m-2">
-                                    <label for="categories_id" class="block text-right text-white mr-2 mb-2">Category</label>
+                                    <label for="categories_id" class="block text-left text-white mr-2 mb-2">Category</label>
                                     <select class="form-select bg-gray-600 text-gray-300" name="categories_id" id="categories_id" v-model="filter.category" @change="onChange($event)">
                                         <option disabled selected value="">Select Category</option>
                                         <option v-for="category in categories" :key="category.id" :value="category.id">{{category.cat_name}}</option>
@@ -31,7 +31,7 @@
                                 </div>
 
                                 <div v-if="categorySelected" class="form-group m-2">
-                                    <label for="categories" class="block text-right text-white mr-2 mb-2">SubCategory</label>
+                                    <label for="categories" class="block text-left text-white mr-2 mb-2">SubCategory</label>
                                     <select v-if="sub.length > 0 || emptySub" class="form-select bg-gray-600 text-gray-300" v-model="filter.subcat" name="categories" id="Scategories" @change="onChangeSub($event)">
                                         <option disabled value="">Select SubCategory</option>
                                         <option id='selectCat' v-for="cat in sub" :key="cat.id" :selected="cat.id == products.sub_cats_id" :value="cat.id">{{cat.cat_name}}</option>
@@ -88,7 +88,18 @@
                                             </svg>
                                         </inertia-link>
                                     </th>
-                                    <th class="select-none">السعر</th>
+                                    <th>
+                                        <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('company')">company
+                                            <svg v-if="params.field === 'company' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
+                                            </svg>
+
+                                            <svg v-if="params.field === 'company' && params.direction === 'desc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
+                                            </svg>
+                                        </inertia-link>
+                                    </th>
+                                    <th class="select-none">Price</th>
                                     <th>
                                         <inertia-link class="flex justify-center hover:text-yellow-500" href="#" @click="sort('pd_stack')">Qty
                                             <svg v-if="params.field === 'pd_stack' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -129,6 +140,7 @@
                                     <th class="text-yellow-300 font-light">{{ product.pd_name }}</th>
                                     <th class="font-light">{{ getCat(product.categories_id) }}</th>
                                     <th class="font-light">{{ getSCat(product.sub_cats_id) }}</th>
+                                    <th class="font-light">{{ product.company }}</th>
                                     <th class="font-light">{{ Number(product.pd_price).toLocaleString('en') }} $</th>
                                     <th class="font-light">{{ product.pd_stack }}</th>
                                     <th class="text-green-400 font-light" v-if="product.pd_state === 1 ">Special</th>
@@ -146,7 +158,7 @@
                         <inertia-link v-if="products.current_page > 2"
                             :href="products.first_page_url">
                             <span class="rounded-2 px-2 py-1 text-white ml-1 hover:bg-red-900 bg-red-600">
-                                <fa icon="angle-double-right" />
+                                <fa icon="angle-double-left" />
                             </span>
                         </inertia-link>
                         <pagination :links="products.links" />
@@ -277,7 +289,7 @@
             if(this.success){
                 this.$swal({
                     toast: true,
-                    position: 'top-start',
+                    position: 'top-end',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,

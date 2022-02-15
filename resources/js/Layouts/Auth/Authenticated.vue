@@ -9,7 +9,7 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <inertia-link :href="route('dashboard')">
-                                    <breeze-application-logo class="block w-24 my-2" />
+                                    <breeze-application-logo class="block w-32 py-1 my-2" />
                                 </inertia-link>
                                 <div class="">
                                     <breeze-responsive-nav-link :href="route('dashboard')" :active="route().current('home')" class="text-gray-50 text-2xl">

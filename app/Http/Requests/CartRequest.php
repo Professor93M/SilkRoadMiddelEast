@@ -29,7 +29,7 @@ class CartRequest extends FormRequest
             'email' => 'nullable|email',
             'mobile' => 'required|regex:/(07)[0-9]{9}/',
             'mobile2' => 'nullable|regex:/(07)[0-9]{9}/',
-            'governorate' => 'required',
+            'country' => 'required',
             'address' => 'required|min:5',
             'comment' => 'nullable',
         ];

@@ -1,5 +1,5 @@
 <template>
-    <div id="scrollbar" class="lg:col-start-1 lg:col-end-4 bg-dark border-l border-white pb-5 h-96 overflow-auto top right-0 lg:fixed lg:w-3/12">
+    <div id="scrollbar" class="lg:col-start-1 lg:col-end-4 bg-dark pb-5 h-96 overflow-auto top left-0 lg:fixed lg:w-3/12">
         <div class="text-center my-4">
             <inertia-link href="/dashboard" class="text-gray-400 text-4xl block hover:text-yellow-500 transition duration-500">
                 <fa icon="tachometer-alt" />
@@ -8,14 +8,14 @@
         </div>
         <!-- + + + + + Admins List + + + + + -->
         <div v-if="isAdmin == 1" class="bg-gray-600 mt-4">
-            <button @click="Admin" class="text-white  border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-right">
+            <button @click="Admin" class="text-white  border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-left">
                 <div class="inline-block align-middle pl-2">
                     <fa v-if="!showAdmin" icon="user-cog" />
                     <fa v-else icon="users" />
                 </div>
                 Admins
-                <span class="float-left">
-                    <fa icon="chevron-right" :class="showAdmin ? 'opened':'closed'" />
+                <span class="float-right">
+                    <fa icon="chevron-down" :class="showAdmin ? 'opened':'closed'" />
                 </span>
             </button>
 
@@ -38,7 +38,10 @@
 
         <!-- + + + + + Products List + + + + + -->
         <div class="bg-gray-600 mt-4">
-            <button @click="Prod" class="text-white  border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-right">
+            <button @click="Prod" class="text-white  border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-left">
+                <span class="float-right">
+                    <fa icon="chevron-down" :class="showProd ? 'opened':'closed'" />
+                </span>
                 <div class="inline-block align-middle pl-2">
                     <svg v-if="!showProd" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
                         <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
@@ -46,9 +49,6 @@
                     <fa v-else icon="box-open" />
                 </div>
                 Products
-                <span class="float-left">
-                    <fa icon="chevron-right" :class="showProd ? 'opened':'closed'" />
-                </span>
             </button>
 
             <transition name="navItems">
@@ -74,7 +74,7 @@
 
         <!-- + + + + + Categories List + + + + + -->
         <div class="bg-gray-600 mt-4">
-            <button @click="Cat" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-right">
+            <button @click="Cat" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-left">
                 <div class="inline-block align-middle pl-2">
                     <svg v-if="!showCat" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"/>
@@ -82,8 +82,8 @@
                     <fa v-else icon="tags" />
                 </div>
                 Categories
-                <span class="float-left">
-                    <fa icon="chevron-right" :class="showCat ? 'opened':'closed'" />
+                <span class="float-right">
+                    <fa icon="chevron-down" :class="showCat ? 'opened':'closed'" />
                 </span>
             </button>
 
@@ -110,7 +110,7 @@
 
         <!-- + + + + + Categories List + + + + + -->
         <div class="bg-gray-600 mt-4">
-            <button @click="SCat" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-right">
+            <button @click="SCat" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-left">
                 <div class="inline-block align-middle pl-2">
                     <svg v-if="!showSCat" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmarks-fill" viewBox="0 0 16 16">
                         <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z"/>
@@ -119,8 +119,8 @@
                     <fa v-else icon="tags" />
                 </div>
                 SubCategories
-                <span class="float-left">
-                    <fa icon="chevron-right" :class="showSCat ? 'opened':'closed'" />
+                <span class="float-right">
+                    <fa icon="chevron-down" :class="showSCat ? 'opened':'closed'" />
                 </span>
             </button>
 
@@ -147,7 +147,7 @@
 
         <!-- + + + + + Carousel List + + + + + -->
         <div class="bg-gray-600 mt-4">
-            <button @click="Car" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-right">
+            <button @click="Car" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-left">
                 <div class="inline-block align-middle pl-2">
                     <svg v-if="showCar" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-megaphone-fill" viewBox="0 0 16 16">
                         <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-11zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237a25.222 25.222 0 0 1 1.088.085c2.053.204 4.038.668 5.912 1.56V3.224zm-8 7.841V4.934c-.68.027-1.399.043-2.008.053A2.02 2.02 0 0 0 0 7v2c0 1.106.896 1.996 1.994 2.009a68.14 68.14 0 0 1 .496.008 64 64 0 0 1 1.51.048zm1.39 1.081c.285.021.569.047.85.078l.253 1.69a1 1 0 0 1-.983 1.187h-.548a1 1 0 0 1-.916-.599l-1.314-2.48a65.81 65.81 0 0 1 1.692.064c.327.017.65.037.966.06z"/>
@@ -157,8 +157,8 @@
                     </svg>
                 </div>
                 Carousels
-                <span class="float-left">
-                    <fa icon="chevron-right" :class="showCar ? 'opened':'closed'" />
+                <span class="float-right">
+                    <fa icon="chevron-down" :class="showCar ? 'opened':'closed'" />
                 </span>
             </button>
 
@@ -184,14 +184,14 @@
         </div>
         <!-- + + + + + Orders List + + + + + -->
         <div class="bg-gray-600 mt-4">
-            <button :class="orderCount ? 'bg-red-600 animate-pulse' : ''" @click="Order" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-right">
+            <button :class="orderCount ? 'bg-red-600 animate-pulse' : ''" @click="Order" class="text-white border-t-2 border-b-2 border-gray-400 bg-gray-600 hvr-bounce-to-left p-3 w-100 hover:bg-gray-400 text-xl text-left">
                 <div class="inline-block align-middle pl-2">
                     <fa v-if="showOrder" icon="dolly" />
                     <fa v-else icon="dolly-flatbed" />
                 </div>
                 Orders
-                <span class="float-left">
-                    <fa icon="chevron-right" :class="showOrder ? 'opened':'closed'" />
+                <span class="float-right">
+                    <fa icon="chevron-down" :class="showOrder ? 'opened':'closed'" />
                 </span>
                 <span v-if="!showOrder && orderCount > 0" class="position-absolute animate-bounce left-10 translate-middle badge rounded-pill bg-yellow-500">
                     {{orderCount}}
@@ -226,12 +226,6 @@
                     <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/history">Orders Logs
                         <div class="float-left px-3 text-xl">
                             <fa icon="clipboard-check" />
-                        </div>
-                    </inertia-link>
-                    <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/usersLogs">Check Logs
-                        <div class="float-left px-3 text-xl">
-                            <fa icon="clipboard-list" />
                         </div>
                     </inertia-link>
                 </div>
@@ -314,6 +308,6 @@ export default {
         background-color: #F59E0B;
     }
     .top{
-        top: 79px
+        top: 66px
     }
 </style>

@@ -30,8 +30,7 @@ class ProductsRequest extends FormRequest
             'pd_price' => 'required|numeric',
             'pd_stack' => 'required|numeric',
             'pd_description' => 'required|min:10',
-            'phone' => 'required|regex:/(07)[0-9]{9}$/',
-            'message' => 'required|min:5',
+            'company' => 'nullable',
             'review' => 'nullable|url',
             'cover' => 'required|mimes:png,jpg,bmp,jpeg,gif,tiff,jfif|max:2000',
         ];

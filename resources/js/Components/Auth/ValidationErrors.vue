@@ -1,6 +1,6 @@
 <template>
     <div v-if="hasErrors">
-        <div class="font-medium text-red-600 text-center">هنالك خطا في تسجيل الدخول!</div>
+        <div class="font-medium text-red-600 text-center">Error in your credentials</div>
 
         <ul class="mt-3 list-disc list-inside text-sm text-red-600">
             <li v-for="(error, key) in errors" :key="key">{{ error }}</li>

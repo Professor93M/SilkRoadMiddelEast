@@ -56,14 +56,12 @@
     </div>
     <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">No Products</h1>
 
-    <whatsapp />
     <Footer />
   </div>
 </template>
 
 <script>
     import navBar from '@/Layouts/Template/nav'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import Footer from '@/Layouts/Template/footer'
     import Card from '@/Layouts/Template/Card'
     import subcat from '@/Layouts/Template/subcat'
@@ -81,7 +79,6 @@ export default {
   },
   components:{
     navBar,
-    whatsapp,
     Footer,
     Card,
     subcat,
@@ -145,12 +142,12 @@ export default {
     line-height: 30px !important;
   }
 
-  body > div.swal2-container.swal2-rtl.swal2-top-start.swal2-backdrop-show > div{
+  body > div.swal2-container.swal2-rtl.swal2-top-end.swal2-backdrop-show > div{
     display: block !important;
     font-size: 18px
   }
 
-  body > div.swal2-container.swal2-rtl.swal2-top-start.swal2-backdrop-show > div > div.swal2-header{
+  body > div.swal2-container.swal2-rtl.swal2-top-end.swal2-backdrop-show > div > div.swal2-header{
     display: flex !important;
   }
 

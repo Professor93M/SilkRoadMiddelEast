@@ -15,8 +15,7 @@ class Products extends Model
         'pd_state',
         'pd_stack',
         'pd_description',
-        'phone',
-        'message',
+        'company',
         'review',
         'cover',
         'categories_id',
@@ -30,7 +29,4 @@ class Products extends Model
     public function categories(){
         return $this->belongsTo(subCat::class);
     }
-
-    // protected $primaryKey = 'products_id';
-
 }

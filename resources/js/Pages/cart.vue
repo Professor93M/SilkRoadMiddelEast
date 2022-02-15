@@ -98,14 +98,14 @@
                             <div class=" ml-2">
                                 <label for="mobile" class="block text-right text-gray-300 mr-2 mb-2">Mobile <span class="text-red-400">*</span></label>
                                 <div class="mt-1 relative rounded-md">
-                                    <input type="tel" title="Enter Valid Number" v-model="order.mobile" placeholder="07X0 000 0000" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
+                                    <input type="tel" title="Enter Valid Number" v-model="order.mobile" placeholder="Mobile Number Here" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
                                 </div>
                                 <small class="text-red-300 mr-auto mb-3">{{ errors.mobile }}</small>
                             </div>
                             <div class="mr-2">
                                 <label for="mobile2" class="block text-right text-gray-300 mr-2 mb-2">Mobile 2</label>
                                 <div class="mt-1 relative rounded-md">
-                                    <input type="tel" v-model="order.mobile2" placeholder="07X0 000 0000" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
+                                    <input type="tel" v-model="order.mobile2" placeholder="Mobile Number Here" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
                                 </div>
                                 <small class="text-red-300 mr-auto mb-3">{{ errors.mobile2 }}</small>
                             </div>
@@ -177,7 +177,6 @@
         </template>
 
         <!-- +++++++++ End Order Template +++++++++ -->
-        <whatsapp />
         <Footer />
 
     </div>
@@ -188,7 +187,6 @@
     import inputNumber from '@/Layouts/Template/inputNumber'
     import {Inertia} from "@inertiajs/inertia";
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import _ from 'lodash';
     import pageTitle from "../Layouts/Template/pageTitle";
 
@@ -197,7 +195,6 @@ export default {
         navBar,
         inputNumber,
         Footer,
-        whatsapp,
         pageTitle,
     },
     props:{

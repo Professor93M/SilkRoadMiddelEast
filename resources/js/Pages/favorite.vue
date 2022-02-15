@@ -17,7 +17,6 @@
             No Products
         </h1>
     </div>
-    <whatsapp />
     <Footer />
   </div>
 </template>
@@ -26,7 +25,6 @@
     import card from '@/Layouts/Template/Card'
     import navBar from '@/Layouts/Template/nav'
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import pageTitle from "../Layouts/Template/pageTitle";
 
 export default {
@@ -34,7 +32,6 @@ export default {
         card,
         navBar,
         Footer,
-        whatsapp,
         pageTitle,
     },
     props: {

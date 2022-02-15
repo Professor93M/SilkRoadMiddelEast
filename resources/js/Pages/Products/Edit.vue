@@ -11,14 +11,14 @@
 
                         <Switch name="pd_state" text="Special" @change="product.pd_state = !product.pd_state" :checked="product.pd_state" />
 
-                        <label for="pd_name" class="block text-right text-white mr-2 mb-2">Name</label>
+                        <label for="pd_name" class="block text-left text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="text" v-model="product.pd_name" class="px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-600 text-gray-300" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_name }}</small>
 
                         <div class="form-group">
-                            <label for="Mcategories" class="block text-right text-white mr-2 mb-2">Category</label>
+                            <label for="Mcategories" class="block text-left text-white mr-2 mb-2">Category</label>
                             <select class="form-select bg-gray-600 text-gray-300" name="Mcategories" id="Mcategories" @load.once="run" @change="onChange($event)">
                                 <option disabled value="">Select Category</option>
                                 <option v-for="category in categories" :key="category.id" :selected="category.id == product.categories_id" :value="category.id">{{category.cat_name}}</option>
@@ -27,7 +27,7 @@
                         <small class="text-red-300 mr-auto mb-3">{{ errors.categories_id }}</small>
 
                         <div class="form-group">
-                            <label for="categories" class="block text-right text-white mr-2 mb-2">SubCategory</label>
+                            <label for="categories" class="block text-left text-white mr-2 mb-2">SubCategory</label>
                             <select v-if="sub.length > 0 || emptySub" class="form-select bg-gray-600 text-gray-300" name="categories" id="Scategories" @change="onChangeSub($event)">
                                 <option disabled value="">Select SubCategory</option>
                                 <option id='selectCat' v-for="cat in sub" :key="cat.id" :selected="cat.id == product.sub_cats_id" :value="cat.id">{{cat.cat_name}}</option>
@@ -40,7 +40,7 @@
                         <small v-show="!Equal" class="text-red-300 mr-auto mb-3">Select SubCategory</small>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.sub_cats_id }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">Cover Image</label>
+                        <label for="img" class="block text-left text-white mr-2 mb-2">Cover Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectCover">
                                 <fa icon="images" class="text-4xl" />
@@ -53,7 +53,7 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.cover }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">Product Images</label>
+                        <label for="img" class="block text-left text-white mr-2 mb-2">Product Images</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -70,50 +70,50 @@
                         </div>
                         <small v-show="imgEmpty" class="text-red-300 mr-auto mb-3">Must select image</small>
 
-                        <label for="pd_price" class="block text-right text-white mr-2 mb-2">Price</label>
+                        <label for="pd_price" class="block text-left text-white mr-2 mb-2">Price</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="number" v-model="product.pd_price" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                             <p class='text-center text-white lead pt-1'>{{Number(product.pd_price).toLocaleString('en')}} $</p>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_price }}</small>
 
-                        <label for="pd_stack" class="block text-right text-white mr-2 mb-2">Qty</label>
+                        <label for="pd_stack" class="block text-left text-white mr-2 mb-2">Qty</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="number" v-model="product.pd_stack" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_stack }}</small>
 
-                        <label for="pd_description" class="block text-right text-white mr-2 mb-2">Description</label>
+                        <label for="pd_description" class="block text-left text-white mr-2 mb-2">Description</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <textarea type="text" rows="5" v-model="product.pd_description" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_description }}</small>
 
-                        <label for="company" class="block text-right text-white mr-2 mb-2">Company</label>
+                        <label for="company" class="block text-left text-white mr-2 mb-2">Company</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="text" v-model="product.company" class="px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-600 text-gray-300" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.company }}</small>
 
-                        <label for="review" class="block text-right text-white mr-2 mb-2">Review</label>
+                        <label for="review" class="block text-left text-white mr-2 mb-2">Review</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
                             <input type="url" v-model="product.review" class="px-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md bg-gray-600 text-gray-300" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.review }}</small>
 
-                        <label for="created_at" class="block text-right text-white mr-2 mb-2">Created at</label>
+                        <label for="created_at" class="block text-left text-white mr-2 mb-2">Created at</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                            <label class="text-white">{{ moment(products.data.created_at).locale('ar').fromNow() }}</label>
+                            <label class="text-white">{{ moment(products.data.created_at).fromNow() }}</label>
                         </div>
 
                         <div v-if="products.data.created_at !== products.data.updated_at">
-                            <label for="updated_at" class="block text-right text-white mr-2 mb-2">Last Update</label>
+                            <label for="updated_at" class="block text-left text-white mr-2 mb-2">Last Update</label>
                             <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                                <label class="text-white">{{ moment(products.data.updated_at).locale('ar').fromNow() }}</label>
+                                <label class="text-white">{{ moment(products.data.updated_at).fromNow() }}</label>
                             </div>
                         </div>
                         <div class="flex justify-around my-4">
-                            <button type="submit" class="btn btn-outline-primary px-5 text-white" :disabled="product.processing || !product.pd_name || !product.img_url || !product.pd_price || !product.pd_description || !product.phone || !product.message">Update</button>
+                            <button type="submit" class="btn btn-outline-primary px-5 text-white">Update</button>
                             <button @click.prevent="deleteProd" class="btn btn-outline-danger px-5 text-white">حذف</button>
                         </div>
                     </form>
@@ -132,8 +132,6 @@
     import Switch from '../../Layouts/Template/switch'
     import Title from "../../Layouts/Template/titles";
     import pageTitle from "../../Layouts/Template/pageTitle";
-
-    import {ref} from 'vue'
     export default {
         components: {
             BreezeAuthenticatedLayout,
@@ -163,8 +161,7 @@
                     pd_state: this.products.data.pd_state,
                     img_url: [],
                     pd_description: this.products.data.pd_description,
-                    phone: '0' + this.products.data.phone,
-                    message: this.products.data.message,
+                    company: this.products.data.company,
                     review: this.products.data.review,
                     cover: this.products.data.cover,
                     categories_id: this.products.data.categories_id,
@@ -203,8 +200,7 @@
                             'pd_stack': this.product.pd_stack,
                             'pd_state': this.product.pd_state,
                             'pd_description': this.product.pd_description,
-                            'phone': this.product.phone,
-                            'message': this.product.message,
+                            'company': this.product.company,
                             'review': this.product.review,
                             'cover': this.product.cover,
                             'categories_id': this.product.categories_id,
@@ -326,7 +322,7 @@
         max-height: 250px;
     }
     .X{
-        left:-50%
+        left:50%
     }
     .swal2-popup{
         display: block !important;

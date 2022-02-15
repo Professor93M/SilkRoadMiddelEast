@@ -8,7 +8,7 @@
 
                     <div class="mb-3 mx-3">
                         <input dir="rtl" placeholder="Search ..." v-model="params.search" type="search" name="search" class="w-1/2 placeholder-opacity-50 rounded-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
-                        <inertia-link href="/subcat/create" type="submit" class="btn btn-outline-primary text-white float-left px-3 flex">
+                        <inertia-link href="/subcat/create" type="submit" class="btn btn-outline-primary text-white float-right px-3 flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
                             </svg>
@@ -41,7 +41,7 @@
                                             </svg>
                                         </inertia-link>
                                     </th>
-                                    <th>الصورة</th>
+                                    <th>Image</th>
                                     <th>
                                         <inertia-link class="flex justify-center" href="#" @click="sort('created_at')">Created at
                                             <svg v-if="params.field === 'created_at' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -154,7 +154,7 @@
             if(this.success){
                 this.$swal({
                     toast: true,
-                    position: 'top-start',
+                    position: 'top-end',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,

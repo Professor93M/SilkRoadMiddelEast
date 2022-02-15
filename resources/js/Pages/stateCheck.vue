@@ -96,7 +96,6 @@
                 <p class="text-base text-gray-400">After preparing the order we will contact with you</p>
             </div>
         </div>
-        <whatsapp />
         <Footer />
   </div>
 </template>
@@ -107,7 +106,6 @@
     import moment from 'moment'
     import 'moment/min/locales'
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import pageTitle from "../Layouts/Template/pageTitle";
 
     export default {
@@ -116,7 +114,6 @@
             navBar,
             moment,
             Footer,
-            whatsapp,
             pageTitle,
         },
         props:{

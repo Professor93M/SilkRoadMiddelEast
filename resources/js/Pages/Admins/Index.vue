@@ -6,8 +6,8 @@
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
                     <Title text="Admins" />
 
-                    <div class="float-right mx-3 my-3">
-                        <inertia-link href="/register" type="submit" class="btn btn-outline-primary text-white float-left px-3 flex">
+                    <div class="float-left mx-3 my-3">
+                        <inertia-link href="/register" type="submit" class="btn btn-outline-primary text-white float-right px-3 flex">
                             <fa icon="user-plus" class="text-xl" />
                             <span class="mx-2">Create</span>
                         </inertia-link>
@@ -50,7 +50,7 @@
                             <inertia-link v-if="admins.current_page > 2"
                                 :href="admins.first_page_url">
                                 <span class="rounded-2 px-2 py-1 text-white ml-1 hover:bg-red-900 bg-red-600">
-                                    <fa icon="angle-double-right" />
+                                    <fa icon="angle-double-left" />
                                 </span>
                             </inertia-link>
                             <pagination :links="admins.links" />
@@ -109,7 +109,7 @@
             if(this.success){
                 this.$swal({
                     toast: true,
-                    position: 'top-start',
+                    position: 'top-end',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,

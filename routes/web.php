@@ -99,9 +99,6 @@ Route::prefix('orders')->middleware('auth:sanctum')->group(function () {
     Route::post('/', [OrdersController::class, 'changeState']);
     Route::delete('/{id}', [OrdersController::class, 'delete']);
 
-    Route::get('/usersLogs', [LogsController::class, 'usersLogs']);
-    Route::get('/destroyall', [LogsController::class, 'deleteAllUsersLogs']);
-    Route::get('/{id}/destroy', [LogsController::class, 'deleteUsersLogs']);
     Route::get('/{any}', function(){
         return abort(404);
     });

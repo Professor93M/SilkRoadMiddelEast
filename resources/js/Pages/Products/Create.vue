@@ -11,14 +11,14 @@
 
                         <Switch name="pd_state" text="Special" @change="products.pd_state = !products.pd_state" :checked="products.pd_state" />
 
-                        <label for="pd_name" class="block text-right text-white mr-2 mb-2">Name</label>
+                        <label for="pd_name" class="block text-left text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="text" v-model="products.pd_name" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_name }}</small>
 
                         <div class="form-group">
-                            <label for="categories_id" class="block text-right text-white mr-2 mb-2">Category</label>
+                            <label for="categories_id" class="block text-left text-white mr-2 mb-2">Category</label>
                             <select class="form-select bg-gray-600 text-gray-300" name="categories_id" id="categories_id" @change="onChange($event)">
                                 <option disabled selected value="">Select Category</option>
                                 <option v-for="category in categories" :key="category.id" :value="category.id">{{category.cat_name}}</option>
@@ -27,7 +27,7 @@
                         <small class="text-red-300 mr-auto mb-3">{{ errors.categories_id }}</small>
 
                         <div v-if="sub" class="form-group">
-                            <label for="sub_cats_id" class="block text-right text-white mr-2 mb-2">SubCategoy</label>
+                            <label for="sub_cats_id" class="block text-left text-white mr-2 mb-2">SubCategoy</label>
                             <select class="form-select bg-gray-600 text-gray-300" name="sub_cats_id" id="sub_cats_id" @change="onChangeSub($event)">
                                 <option disabled selected value="">Select SubCategoy</option>
                                 <option v-for="category in sub" :key="category.id" :value="category.id">{{category.cat_name}}</option>
@@ -35,7 +35,7 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.sub_cats_id }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">Cover Image</label>
+                        <label for="img" class="block text-left text-white mr-2 mb-2">Cover Image</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectCover">
                                 <fa icon="images" class="text-4xl" />
@@ -48,7 +48,7 @@
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.cover }}</small>
 
-                        <label for="img" class="block text-right text-white mr-2 mb-2">Product Images</label>
+                        <label for="img" class="block text-left text-white mr-2 mb-2">Product Images</label>
                         <div class="bg-gray-400 py-3 rounded-1 cursor-pointer border-dashed border-2">
                             <div @click="selectImage">
                                 <fa icon="images" class="text-4xl" />
@@ -61,39 +61,39 @@
                         </div>
                         <small v-show="imgEmpty" class="text-red-300 mr-auto mb-3">Must select image</small>
 
-                        <label for="price" class="block text-right text-white mr-2 mb-2">Price</label>
+                        <label for="price" class="block text-left text-white mr-2 mb-2">Price</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="number" @keypress='onlyNumbers' v-model.number="products.pd_price" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                             <p class='text-center text-white lead pt-1'>{{Number(products.pd_price).toLocaleString('en')}} $</p>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_price }}</small>
 
-                        <label for="stack" class="block text-right text-white mr-2 mb-2">Qty</label>
+                        <label for="stack" class="block text-left text-white mr-2 mb-2">Qty</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="number" v-model="products.pd_stack" min="0" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_stack }}</small>
 
-                        <label for="description" class="block text-right text-white mr-2 mb-2">Description</label>
+                        <label for="description" class="block text-left text-white mr-2 mb-2">Description</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <textarea type="text" rows="5" v-model="products.pd_description" class="max-height px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"></textarea>
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.pd_description }}</small>
 
-                        <label for="Company" class="block text-right text-white mr-2 mb-2">Company Name</label>
+                        <label for="Company" class="block text-left text-white mr-2 mb-2">Company Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="text" v-model="products.company" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.company }}</small>
 
-                        <label for="review" class="block text-right text-white mr-2 mb-2">Review</label>
+                        <label for="review" class="block text-left text-white mr-2 mb-2">Review</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input type="url" v-model="products.review" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3">{{ errors.review }}</small>
 
                         <div class="flex justify-around my-4">
-                            <button type="submit" class="btn btn-outline-primary px-5 text-white" :disabled="products.processing || !products.pd_name || !products.img_url || !products.pd_price || !products.pd_stack || !products.pd_description || !products.phone || !products.categories_id || !products.sub_cats_id || !products.message">Create</button>
+                            <button type="submit" class="btn btn-outline-primary px-5 text-white">Create</button>
                         </div>
                     </form>
                 </div>
@@ -156,6 +156,7 @@
                     return this.imgEmpty = true
                 }else{
                     this.imgEmpty = false
+                    console.log('efe');
                     Inertia.post('/products', this.products)
                 }
             },
@@ -248,7 +249,7 @@
         max-height: 250px;
     }
     .X{
-        left:-50%
+        left:50%
     }
     .swal2-popup{
         display: block !important;

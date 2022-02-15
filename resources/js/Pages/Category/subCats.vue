@@ -16,7 +16,6 @@
             No SubCategories
         </h1>
     </div>
-    <whatsapp />
     <Footer />
   </div>
 </template>
@@ -28,7 +27,6 @@
     import pagination from '../../Layouts/pagination'
     import subCats from '../../Layouts/Template/subCats'
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import pageTitle from "../../Layouts/Template/pageTitle";
 
 export default {
@@ -38,7 +36,6 @@ export default {
         pagination,
         subCats,
         Footer,
-        whatsapp,
         pageTitle,
         bread,
     },

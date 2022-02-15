@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center cursor-pointer">
-        <span class="text-white mx-2">{{text}}</span>
+        <span class="text-white mr-3">{{text}}</span>
         <label class="switch">
             <input name="name" type="checkbox" :checked="checked">
             <span class="slider round"></span>

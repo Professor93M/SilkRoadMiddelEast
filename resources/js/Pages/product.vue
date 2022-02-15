@@ -112,7 +112,6 @@
             <span @click="othLeft" class="carousel-control-prev-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
         </div>
 
-        <whatsapp />
         <Footer />
     </div>
 </template>
@@ -120,7 +119,6 @@
 <script>
     import navBar from '@/Layouts/Template/nav'
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import Card from '@/Layouts/Template/Card'
     import pageTitle from "../Layouts/Template/pageTitle";
     import Title from "../Layouts/Template/titles";
@@ -129,7 +127,6 @@ export default {
     components:{
         navBar,
         Footer,
-        whatsapp,
         Card,
         pageTitle,
         Title,

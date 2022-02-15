@@ -2,9 +2,6 @@
 
 use App\Models\Orders;
 use App\Models\Cart;
-use App\Models\logs;
-use Illuminate\Support\Facades\Auth;
-
 
 if (!function_exists('doneOrders')) {
     function doneOrders($state){

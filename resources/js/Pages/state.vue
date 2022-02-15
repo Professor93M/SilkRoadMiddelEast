@@ -10,7 +10,7 @@
             <div class="mx-auto lg:w-3/12 md:w-5/12 w-8/12 ">
                 <label for="mobile" class="block text-right text-gray-300 mr-2 mb-2">Mobile</label>
                 <div class="mt-1 relative rounded-md">
-                    <input type="tel" v-model="state.m" placeholder="07X0 000 0000" class="text-center bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
+                    <input type="tel" v-model="state.m" placeholder="Mobile Number Here" class="text-center bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
                 </div>
                 <small class="text-red-300 mr-auto mb-3">{{ errors.m }}</small>
                 <small v-if="errorMobile" class="text-red-300 mr-auto mb-3">{{ errorMobile }}</small>
@@ -23,7 +23,6 @@
                 <p class="relative inline-flex rounded-md shadow-sm">Enter Your Mobile Number to check your order states</p>
             </div>
         </div>
-        <whatsapp />
         <Footer />
   </div>
 </template>
@@ -33,7 +32,6 @@
     import navBar from '@/Layouts/Template/nav'
     import {Inertia} from "@inertiajs/inertia";
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import pageTitle from "../Layouts/Template/pageTitle";
 
     export default {
@@ -41,7 +39,6 @@
             card,
             navBar,
             Footer,
-            whatsapp,
             pageTitle,
         },
         data() {

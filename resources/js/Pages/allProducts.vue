@@ -33,7 +33,6 @@
             </span>
         </inertia-link>
     </div>
-    <whatsapp />
     <Footer />
   </div>
 </template>
@@ -43,7 +42,6 @@
     import navBar from '@/Layouts/Template/nav'
     import pagination from '../Layouts/pagination'
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import pageTitle from "../Layouts/Template/pageTitle";
 
 export default {
@@ -52,7 +50,6 @@ export default {
         navBar,
         pagination,
         Footer,
-        whatsapp,
         pageTitle,
     },
     props: {

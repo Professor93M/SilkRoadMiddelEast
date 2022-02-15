@@ -5,10 +5,17 @@
     <h1 class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 hover:text-gray-300 select-none transition duration-500 font-weight-bolder my-5">
         All Categories
     </h1>
-    <div class="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 m-4">
-      <div dir="ltr" v-for="(cat, index) in allCategories.data" :key="index" class="bg-gray-700 mx-auto px-3 mb-3 shadow-lg pt-3 rounded-lg">
-        <categories url='category' :cat_id="cat.id" :cat_name="cat.cat_name" :img="cat.image.img_url"  />
+    <div v-if="allCategories.data.length > 0">
+      <div class="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 m-4">
+        <div dir="ltr" v-for="(cat, index) in allCategories.data" :key="index" class="bg-gray-700 mx-auto px-3 mb-3 shadow-lg pt-3 rounded-lg">
+          <categories url='category' :cat_id="cat.id" :cat_name="cat.cat_name" :img="cat.image.img_url"  />
+        </div>
       </div>
+    </div>
+    <div v-else class="flex justify-center">
+        <h1 class="text-white text-center text-2xl bg-gray-800 w-90 p-4 rounded-lg">
+            No Categories
+        </h1>
     </div>
     <!--  Pagination  -->
     <div v-if="products" class="flex justify-center my-3">
@@ -26,7 +33,6 @@
             </span>
         </inertia-link>
     </div>
-    <whatsapp />
     <Footer />
   </div>
 </template>
@@ -36,7 +42,6 @@
     import navBar from '@/Layouts/Template/nav'
     import pagination from '../../Layouts/pagination'
     import Footer from '@/Layouts/Template/footer'
-    import whatsapp from '@/Layouts/Template/whatsapp'
     import pageTitle from "../../Layouts/Template/pageTitle";
 
 export default {
@@ -45,7 +50,6 @@ export default {
         navBar,
         pagination,
         Footer,
-        whatsapp,
         pageTitle,
     },
     props: {

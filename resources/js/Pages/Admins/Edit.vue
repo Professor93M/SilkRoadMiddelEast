@@ -13,39 +13,39 @@
                             <Switch v-if="admins.id !== 1" name="state" text="Rule" @change="changeState" :checked="admins.isAdmin" />
                         </div>
 
-                        <label for="name" class="block text-right text-white mr-2 mb-2">Name</label>
+                        <label for="name" class="block text-left text-white mr-2 mb-2">Name</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="name" type="text" v-model="admin.name" :class="{ 'is-invalid': errors.name }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.name">{{ errors.name }}</small>
 
-                        <label for="password" class="block text-right text-white mr-2 mb-2">Password</label>
+                        <label for="password" class="block text-left text-white mr-2 mb-2">Password</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="password" type="password" v-model="admin.password" placeholder="Leave the field if there is no update" :class="{ 'is-invalid': errors.password }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md placeholder-yellow-500 placeholder-opacity-70" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.password">{{ errors.password }}</small>
 
-                        <label for="password_confirmation" class="block text-right text-white mr-2 mb-2">Confirm Password</label>
+                        <label for="password_confirmation" class="block text-left text-white mr-2 mb-2">Confirm Password</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="password_confirmation" type="password" v-model="admin.password_confirmation" placeholder="Leave the field if there is no update" :class="{ 'is-invalid': errors.password_confirmation }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md placeholder-yellow-500 placeholder-opacity-70" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.password_confirmation">{{ errors.password_confirmation }}</small>
 
-                        <label for="email" class="block text-right text-white mr-2 mb-2">Email</label>
+                        <label for="email" class="block text-left text-white mr-2 mb-2">Email</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
                             <input id="email" type="email" v-model="admin.email" :class="{ 'is-invalid': errors.email }" class="px-3 bg-gray-600 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <small class="text-red-300 mr-auto mb-3" v-if="errors.email">{{ errors.email }}</small>
 
-                        <label class="block text-right text-white mr-2 mb-2">Created at</label>
+                        <label class="block text-left text-white mr-2 mb-2">Created at</label>
                         <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                            <label class="text-white">{{ moment(admins.created_at).locale("ar").fromNow() }}</label>
+                            <label class="text-white">{{ moment(admins.created_at).fromNow() }}</label>
                         </div>
 
                         <div v-if="admins.created_at !== admins.updated_at">
-                            <label class="block text-right text-white mr-2 mb-2">Last Update</label>
+                            <label class="block text-left text-white mr-2 mb-2">Last Update</label>
                             <div class="mt-1 relative rounded-md shadow-sm mb-3">
-                                <label class="text-white">{{ moment(admins.updated_at).locale("ar").fromNow() }}</label>
+                                <label class="text-white">{{ moment(admins.updated_at).fromNow() }}</label>
                             </div>
                         </div>
 

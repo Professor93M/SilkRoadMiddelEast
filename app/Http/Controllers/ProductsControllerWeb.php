@@ -89,8 +89,7 @@ class ProductsControllerWeb extends Controller
             'pd_stack'       => $request->pd_stack,
             'pd_state'       => $request->pd_state,
             'pd_description' => $request->pd_description,
-            'phone'          => substr($request->phone, 1),
-            'message'        => $request->message,
+            'company'        => $request->company,
             'review'         => $request->review,
             'cover'          => $cover,
             'categories_id'  => $request->categories_id,
@@ -174,8 +173,7 @@ class ProductsControllerWeb extends Controller
             ($request->pd_stack        !== $products->pd_stack) ||
             ($request->pd_state        !== $products->pd_state) ||
             ($request->pd_description  !== $products->pd_description) ||
-            ($request->phone           !== $products->phone) ||
-            ($request->message         !== $products->pd_description) ||
+            ($request->company         !== $products->company) ||
             ($request->review          !== $products->review) ||
             ($request->cover           !== $products->cover) ||
             ($request->categories_id   !== $products->categories_id) ||
@@ -206,15 +204,9 @@ class ProductsControllerWeb extends Controller
                     ]
                 );
             }
-            if($request->phone !== $products->phone){
+            if($request->company !== $products->company){
                 $request->validate([
-                    'phone'       => 'required',
-                    ]
-                );
-            }
-            if($request->message !== $products->message){
-                $request->validate([
-                    'message'       => 'required|min:10',
+                    'company'       => 'required',
                     ]
                 );
             }
@@ -255,8 +247,7 @@ class ProductsControllerWeb extends Controller
                 'pd_stack' => $request->pd_stack,
                 'pd_state' => $request->pd_state,
                 'pd_description' => $request->pd_description,
-                'phone' => substr($request->phone, 1),
-                'message' => $request->message,
+                'company' => $request->company,
                 'review' => $request->review,
                 'cover' => $cover,
                 'categories_id' => $request->categories_id,

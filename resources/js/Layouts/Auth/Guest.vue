@@ -2,7 +2,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-700">
         <div>
             <inertia-link href="/">
-                <breeze-application-logo class="w-40 mt-5 h-20 fill-current text-gray-500" />
+                <breeze-application-logo class="w-60 mt-20 mb-3 h-20 fill-current text-gray-500" />
             </inertia-link>
         </div>
 

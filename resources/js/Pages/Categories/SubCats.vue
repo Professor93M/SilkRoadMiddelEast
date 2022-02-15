@@ -68,7 +68,6 @@
     import {Inertia} from "@inertiajs/inertia";
     import pagination from '../../Layouts/pagination'
     import moment from 'moment'
-    import { pickBy, throttle } from 'lodash';
     import Title from "../../Layouts/Template/titles";
     import pageTitle from "../../Layouts/Template/pageTitle";
 
