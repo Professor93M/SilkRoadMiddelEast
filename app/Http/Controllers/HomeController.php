@@ -87,7 +87,7 @@ class HomeController extends Controller
             'product' => $products,
             'cat_name' => Categories::select('cat_name')->where('id', $product->categories_id)->first(),
             'subcat_name' => subCat::select('cat_name')->where('id', $product->sub_cats_id)->first()
-        ])->withViewData(['cover' => $products->cover, 'description' => $products->pd_description, 'title' => $products->pd_name]);
+        ]);
     }
     public function allProducts()
     {
@@ -108,7 +108,7 @@ class HomeController extends Controller
             'email' => 'nullable|email',
             'mobile' => 'required',
             'mobile2' => 'nullable|different:mobile',
-            'governorate' => 'required',
+            'country' => 'required',
             'address' => 'required|min:5',
             'location' => 'required',
             'comment' => 'nullable',
@@ -124,7 +124,7 @@ class HomeController extends Controller
             'email'         => $request->input('0.email'),
             'mobile'        => $request->input('0.mobile'),
             'mobile2'       => $request->input('0.mobile2'),
-            'governorate'   => $request->input('0.governorate'),
+            'country'   => $request->input('0.country'),
             'address'       => $request->input('0.address'),
             'location'      => $request->input('0.location'),
             'comment'       => $request->input('0.comment'),

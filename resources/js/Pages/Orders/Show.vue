@@ -4,7 +4,7 @@
         <div class="container-fluid px-0 bg-gray-700">
             <div class="grid lg:grid-cols-12 w-full">
                 <div class="lg:col-start-4 lg:col-end-13 lg:mx-2 table-responsive">
-                    <h3 class="my-3 text-white text-2xl pb-3 pr-3 text-center border-b-2 border-gray-500">حساب <span class="text-yellow-500">{{ cart.first_name }} {{ cart.last_name }}</span></h3>
+                    <h3 class="my-3 text-white text-2xl pb-3 pr-3 text-center border-b-2 border-gray-500">Order <span class="text-yellow-500">{{ cart.first_name }} {{ cart.last_name }}</span></h3>
 
                     <div class="flex justify-around my-4">
                         <Switch name="state" v-if="orders[0].state <= 1" :text="orders[0].state === 0 ? 'processing' : 'Stack'" @change="state = !state" :checked="cart.state" />

@@ -2,8 +2,8 @@
     <div class="bg-gray-700">
         <navBar :logged="auth.user" />
         <div class="flex justify-center opacity-70">
-            <input :disabled="!$store.state.cart.length >= 1" @click.prevent="x=1" type="button" :class="x==1 ? 'btn-danger z-10' : 'btn-secondary'" class="btn btn-secondary btn-lg  w-80 mr-9 rounded-tr-none rounded-tl-none rounded-bl-full rounded-br-full focus:ring-0 z-10" value="Cart">
             <input v-if="$store.state.cart.length >= 1" @click.prevent="submitCart" type="button" :class="x==2 ? 'btn-danger z-10' : 'btn-secondary'" class="btn btn-secondary btn-lg  w-80 -mr-9 rounded-tr-none rounded-tl-none rounded-bl-full rounded-br-full focus:ring-0" value="Order Info">
+            <input :disabled="!$store.state.cart.length >= 1" @click.prevent="x=1" type="button" :class="x==1 ? 'btn-danger z-10' : 'btn-secondary'" class="btn btn-secondary btn-lg  w-80 mr-9 rounded-tr-none rounded-tl-none rounded-bl-full rounded-br-full focus:ring-0 z-10" value="Cart">
         </div>
 
         <!-- +++++++++ Start Cart Template +++++++++ -->
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <input @click.prevent="submitCart" type="submit" class="btn btn-outline-secondary w-40 p-2 mb-5 mt-3 border-2 border-gray-400 text-yellow-500 font-extrabold text-lg" value="موافق">
+                        <input @click.prevent="submitCart" type="submit" class="btn btn-outline-secondary w-40 p-2 mb-5 mt-3 border-2 border-gray-400 text-yellow-500 font-extrabold text-lg" value="Submit">
                     </div>
                 </div>
             </template>
@@ -71,14 +71,14 @@
 
                         <div class="flex justify-start">
                             <div class=" ml-2">
-                                <label for="first_name" class="block text-right text-gray-300 mr-2 mb-2">FirstName <span class="text-red-400">*</span></label>
+                                <label for="first_name" class="block text-left text-gray-300 mr-2 mb-2">FirstName <span class="text-red-400">*</span></label>
                                 <div class="mt-1 relative rounded-md">
                                     <input name="first_name" type="text" v-model="order.first_name" placeholder="FirstName" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full placeholder-opacity-50" />
                                 </div>
                                 <small class="text-red-300 mr-auto mb-3">{{ errors.first_name }}</small>
                             </div>
                             <div class="mr-2">
-                                <label for="last_name" class="block text-right text-gray-300 mr-2 mb-2">LastName <span class="text-red-400">*</span></label>
+                                <label for="last_name" class="block text-left text-gray-300 mr-2 mb-2">LastName <span class="text-red-400">*</span></label>
                                 <div class="mt-1 relative rounded-md">
                                     <input name="order['last_name']" type="text" v-model="order.last_name" placeholder="LastName" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full placeholder-opacity-50" />
                                 </div>
@@ -87,7 +87,7 @@
                         </div>
 
                         <div>
-                            <label for="email" class="block text-right text-gray-300 mx-2 mb-2">Email</label>
+                            <label for="email" class="block text-left text-gray-300 mx-2 mb-2">Email</label>
                             <div class="mt-1 relative rounded-md">
                                 <input type="email" v-model="order.email" placeholder="example@domain.com" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
                             </div>
@@ -96,14 +96,14 @@
 
                         <div class="flex justify-start">
                             <div class=" ml-2">
-                                <label for="mobile" class="block text-right text-gray-300 mr-2 mb-2">Mobile <span class="text-red-400">*</span></label>
+                                <label for="mobile" class="block text-left text-gray-300 mr-2 mb-2">Mobile <span class="text-red-400">*</span></label>
                                 <div class="mt-1 relative rounded-md">
                                     <input type="tel" title="Enter Valid Number" v-model="order.mobile" placeholder="Mobile Number Here" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
                                 </div>
                                 <small class="text-red-300 mr-auto mb-3">{{ errors.mobile }}</small>
                             </div>
                             <div class="mr-2">
-                                <label for="mobile2" class="block text-right text-gray-300 mr-2 mb-2">Mobile 2</label>
+                                <label for="mobile2" class="block text-left text-gray-300 mr-2 mb-2">Mobile 2</label>
                                 <div class="mt-1 relative rounded-md">
                                     <input type="tel" v-model="order.mobile2" placeholder="Mobile Number Here" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full" />
                                 </div>
@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="mr-2">
-                            <label for="country" class="block text-right text-gray-300 mr-2 mb-2">Country <span class="text-red-400">*</span></label>
+                            <label for="country" class="block text-left text-gray-300 mr-2 mb-2">Country <span class="text-red-400">*</span></label>
                             <div class="mt-1 relative rounded-md">
                                 <input name="order['country']" type="text" v-model="order.country" placeholder="Country" class="bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full placeholder-opacity-50" />
                             </div>
@@ -120,7 +120,7 @@
                         </div>
 
                         <div>
-                            <label for="address" class="block text-right text-gray-300 mx-2 mb-2">Address <span class="text-red-400">*</span></label>
+                            <label for="address" class="block text-left text-gray-300 mx-2 mb-2">Address <span class="text-red-400">*</span></label>
                             <div class="mt-1 relative rounded-md">
                                 <textarea type="text" v-model="order.address" placeholder="Nearly Address" class="max-height bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full"></textarea>
                             </div>
@@ -128,7 +128,7 @@
                         </div>
 
                         <div>
-                            <label for="comment" class="block text-right text-gray-300 mx-2 mb-2">Note</label>
+                            <label for="comment" class="block text-left text-gray-300 mx-2 mb-2">Note</label>
                             <div class="mt-1 relative rounded-md">
                                 <textarea type="text" v-model="order.comment" placeholder="Note" class="max-height bg-gray-700 text-gray-300 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md w-full"></textarea>
                             </div>

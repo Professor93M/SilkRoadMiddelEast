@@ -47,8 +47,8 @@
                     <fa icon="cog" class="text-xl text-yellow-300 m-1" />
                 </inertia-link>
 
-                <inertia-link @click.prevent="search" href="/search" class="btn btn-outline-secondary text-lg text-gray-400 font-bold rounded-l-none rounded-r-lg border-2 border-gray-400 -ml-1">Search</inertia-link>
-                <input dir="rtl" @keypress.enter="search" placeholder="Search ..." v-model="searchData.s" type="search" name="search" class="w-full placeholder-opacity-50 rounded-r-none rounded-l-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
+                <inertia-link @click.prevent="search" href="/search" class="btn btn-outline-secondary text-lg text-gray-400 font-bold rounded-r-none rounded-l-lg border-2 border-gray-400 -ml-1">Search</inertia-link>
+                <input dir="rtl" @keypress.enter="search" placeholder="Search ..." v-model="searchData.s" type="search" name="search" class="w-full placeholder-opacity-50 rounded-l-none rounded-r-lg sm:text-sm bg-gray-600 text-gray-400 border-2 border-gray-400">
             </div>
             <div class="hidden lg:block col-start-9 col-end-13 ml-3">
                 <div class="flex">
