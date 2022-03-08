@@ -42,7 +42,7 @@
                                     </select>
                                 </div>
                                 <div v-if="categorySelected" class="m-auto ">
-                                    <inertia-link class="bg-red-500 btn w-20 mb-1 text-white" href="/products">الغاء</inertia-link>
+                                    <inertia-link class="bg-red-500 btn w-20 mb-1 text-white" href="/products">Clear</inertia-link>
                                 </div>
                             </fieldset>
 
