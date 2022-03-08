@@ -193,7 +193,7 @@
                 <span class="float-right">
                     <fa icon="chevron-down" :class="showOrder ? 'opened':'closed'" />
                 </span>
-                <span v-if="!showOrder && orderCount > 0" class="position-absolute animate-bounce left-10 translate-middle badge rounded-pill bg-yellow-500">
+                <span v-if="!showOrder && orderCount > 0" class="position-absolute animate-bounce right-10 translate-middle badge rounded-pill bg-yellow-500">
                     {{orderCount}}
                     <span class="visually-hidden">orderCount</span>
                 </span>
@@ -213,7 +213,7 @@
                         </span>
                     </inertia-link>
                     <hr>
-                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/checked">Prepard Orders
+                    <inertia-link class="block py-3 text-decoration-none hover:bg-gray-200 hover:text-dark" href="/orders/checked">Prepared Orders
                         <div class="float-left px-3">
                             <fa icon="truck" />
                         </div>

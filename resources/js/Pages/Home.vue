@@ -40,7 +40,7 @@
       <span @click="newLeft" class="carousel-control-prev-icon flex opacity-50 hover:opacity-100 cursor-pointer"></span>
     </div>
     <h1 v-else class="text-yellow-400 font-bold text-2xl text-center bg-gray-900 rounded-lg p-2 mx-auto w-5/6">No Products</h1>
- <!-- lg:min-w-20 md:min-w-40 min-w-60 md:max-w-20 -->
+
     <!-- Special       -->
     <inertia-link as="h1" href="/special" class="headers md:mx-24 flex justify-center text-2xl font-extrabold text-yellow-500 font-weight-bolder mt-16 mb-3 hover:text-gray-300 transition duration-500">
       Special

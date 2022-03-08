@@ -86,7 +86,6 @@ Route::Resource('/categories', CategoriesController::class)->middleware('auth:sa
 Route::Resource('/subcat', SubCatController::class)->middleware('auth:sanctum');
 Route::Resource('/carousel', CarouselController::class)->middleware('auth:sanctum');
 
-// Route::get('dashboard', [ProductsControllerWeb::class, 'productsDash'])->middleware('auth:sanctum');
 Route::prefix('dashboard')->middleware('auth:sanctum')->group(function () {
     Route::get('/products', [ProductsControllerWeb::class, 'productsDash'])->name('productsDash');
     Route::get('/carousel', [CarouselController::class, 'carouselDash'])->name('carouselDash');
@@ -103,9 +102,6 @@ Route::prefix('orders')->middleware('auth:sanctum')->group(function () {
         return abort(404);
     });
 });
-// Route::any('/{any}', function(){
-//     return abort(404);
-// });
 // ++++++ Images Route ++++++
 Route::get('/images/{folder}/{image}', [ImageController::class, 'all']);
 Route::get('categories/{id}/images/{folder}/{image}', [ImageController::class, 'cats']);

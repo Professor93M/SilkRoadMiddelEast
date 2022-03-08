@@ -144,7 +144,8 @@ class HomeController extends Controller
 
     public function search(){
         $searched = Products::where('pd_name', 'LIKE', '%' . request('s') . '%')
-                        ->orWhere('pd_description', 'LIKE', '%' . request('s') . '%')->with('images')->paginate(24);
+                        ->orWhere('pd_description', 'LIKE', '%' . request('s') . '%')
+                        ->orWhere('company', 'LIKE', '%' . request('s') . '%')->with('images')->paginate(24);
         if($searched->total() > 0){
             return Inertia::render('search', [
                 'searched' => $searched

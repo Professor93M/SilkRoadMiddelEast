@@ -25,7 +25,7 @@ class ProductsControllerWeb extends Controller
     {
         request()->validate([
             'direction' => Rule::in(['asc', 'desc']),
-            'field'     => Rule::in(['id', 'categories_id', 'sub_cats_id', 'pd_name', 'pd_stack', 'pd_state', 'created_at']),
+            'field'     => Rule::in(['id', 'categories_id', 'sub_cats_id', 'pd_name', 'company', 'pd_stack', 'pd_state', 'created_at']),
         ]);
 
         $query = Products::query();
@@ -33,6 +33,7 @@ class ProductsControllerWeb extends Controller
         if (request('search')) {
             $query->where('pd_name', 'LIKE', '%'.request('search').'%');
             $query->orWhere('pd_description', 'LIKE', '%'.request('search').'%');
+            $query->orWhere('company', 'LIKE', '%'.request('search').'%');
         }
         if(request()->has(['field', 'direction'])){
             $query->orderBy(request('field'), request('direction'));
